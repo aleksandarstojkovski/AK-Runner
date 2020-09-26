@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
         if (jump == true)
         {
-            transform.Translate(0, 0.3f, 0.1f);
+            transform.Translate(0, 2f, 0.1f);
         }
 
         if (slide == true)
