@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
+    public GameObject trigger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +54,16 @@ public class PlayerController : MonoBehaviour
             transform.Translate(0, 0, 0.1f);
         }
 
-
+        trigger = GameObject.FindGameObjectWithTag("Obstacle");
     }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "PlayerTrigger") {
+            Destroy(trigger.gameObject);
+        }
+        if (other.gameObject.tag == "Coin") {
+            Destroy(other.gameObject,0.5f);
+        }
+    }
+
 }
