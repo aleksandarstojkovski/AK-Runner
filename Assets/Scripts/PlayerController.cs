@@ -8,20 +8,32 @@ public class PlayerController : MonoBehaviour
     public bool slide = false;
 
     public Animator anim;
+    private Rigidbody rigidBody;
+    private CapsuleCollider capsuleCollider;
 
     public GameObject trigger;
+
+    public float JumpHeight = 10;
+    private bool _isGrounded = true;
+    public float GroundDistance = 0.2f;
+    public LayerMask Ground;
+    public Transform _groundChecker;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        transform.Translate(0, 0, 0.05f);
+
+        _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground, QueryTriggerInteraction.Ignore);
+
+        transform.Translate(0, 0, 5.0f*Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -44,15 +56,16 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isJump", jump);
         anim.SetBool("isSlide", slide);
 
-        if (jump == true)
+        if (jump == true && _isGrounded)
         {
-            transform.Translate(0, 2f, 0.1f);
+            //transform.Translate(0, 2f* Time.deltaTime, 0.1f*Time.deltaTime);
+            rigidBody.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
 
         if (slide == true)
         {
-            transform.Translate(0, 0, 0.1f);
         }
+
 
         trigger = GameObject.FindGameObjectWithTag("Obstacle");
     }
