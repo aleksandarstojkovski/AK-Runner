@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
     private Rigidbody rigidBody;
-    private CapsuleCollider capsuleCollider;
+    private BoxCollider capsuleCollider;
 
     public GameObject trigger;
 
@@ -18,24 +19,48 @@ public class PlayerController : MonoBehaviour
     public float GroundDistance = 10f;
     public LayerMask Ground;
     public Transform _groundChecker;
+    public float velocita = 5.0f;
+    public float score = 0;
+
+    public Text scoreText;
+    public Text bestScoreText;
+    public bool death = false;
+    public Image gameOverImage;
+    public float bestScoreEver;
+
+    bool AnimatorIsPlaying(string stateName)
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
-        capsuleCollider = GetComponentInChildren<CapsuleCollider>();
-        Debug.Log("Capsule collider: " + capsuleCollider);
+        capsuleCollider = GetComponent<BoxCollider>();
+        bestScoreEver = PlayerPrefs.GetFloat("BestScore");
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        scoreText.text = score.ToString();
+        bestScoreText.text = "Your score: " + score +"\n"+ "Best score: " + bestScoreEver;
+      
+
+        if (death == true)
+        {
+            gameOverImage.gameObject.SetActive(true);
+        }
+
+
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground, QueryTriggerInteraction.Ignore);
 
         //Movimento giocatore in avanti
-        transform.Translate(0, 0, 5.0f*Time.deltaTime);
+        if (death == false)
+            transform.Translate(0, 0, velocita*Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -70,6 +95,9 @@ public class PlayerController : MonoBehaviour
 
 
         trigger = GameObject.FindGameObjectWithTag("Obstacle");
+        velocita += 0.002f;
+        anim.speed += 0.00002f;
+
     }
 
     void OnTriggerEnter(Collider other) {
@@ -78,6 +106,14 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.tag == "Coin") {
             Destroy(other.gameObject,0.5f);
+            score += 5f;
+        }
+        if (other.gameObject.tag == "DeathPoint") {
+            death = true;
+            if (score > bestScoreEver)
+            {
+                PlayerPrefs.SetFloat("BestScore", score);
+            }
         }
     }
 
