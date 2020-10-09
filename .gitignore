@@ -39,3 +39,10 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
+
+###
+# Rimosso
+###
+.git/
+.vs/
+.vscode/

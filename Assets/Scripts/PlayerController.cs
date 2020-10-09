@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public float JumpHeight = 10;
     private bool _isGrounded = true;
-    public float GroundDistance = 0.2f;
+    public float GroundDistance = 10f;
     public LayerMask Ground;
     public Transform _groundChecker;
 
@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
+        capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        Debug.Log("Capsule collider: " + capsuleCollider);
     }
 
     // Update is called once per frame
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground, QueryTriggerInteraction.Ignore);
 
+        //Movimento giocatore in avanti
         transform.Translate(0, 0, 5.0f*Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -71,7 +73,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "PlayerTrigger") {
+        if (other.gameObject.tag == "Player") {
             Destroy(trigger.gameObject);
         }
         if (other.gameObject.tag == "Coin") {
