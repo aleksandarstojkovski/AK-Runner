@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
 
         scoreText.text = score.ToString();
-        bestScoreText.text = "Your score: " + score +"\n"+ "Best score: " + bestScoreEver;
+        //bestScoreText.text = "Your score: " + score +"\n"+ "Best score: " + bestScoreEver;
       
 
         if (death == true)
@@ -89,11 +89,6 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
 
-        if (slide == true)
-        {
-        }
-
-
         trigger = GameObject.FindGameObjectWithTag("Obstacle");
         velocita += 0.002f;
         anim.speed += 0.00002f;
@@ -101,6 +96,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
+        //Debug.Log(other);
         if (other.gameObject.tag == "Player") {
             Destroy(trigger.gameObject);
         }
@@ -108,12 +104,17 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject,0.5f);
             score += 5f;
         }
-        if (other.gameObject.tag == "DeathPoint") {
+        if (other.gameObject.tag == "Obstacle")
+        {
+            Debug.Log("Colpito ostacolo " + trigger.name);
             death = true;
             if (score > bestScoreEver)
             {
                 PlayerPrefs.SetFloat("BestScore", score);
             }
+        }
+        if (other.gameObject.tag == "DeathPoint") {
+            
         }
     }
 
