@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
 
         scoreText.text = score.ToString();
-        //bestScoreText.text = "Your score: " + score +"\n"+ "Best score: " + bestScoreEver;
+        bestScoreText.text = "Your score: " + score +"\n"+ "Best score: " + bestScoreEver;
       
 
         if (death == true)
