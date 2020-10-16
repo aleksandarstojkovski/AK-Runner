@@ -11,6 +11,11 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void RetryGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
     public void GoToSettingsMenu()
     {
         SceneManager.LoadScene("SettingsMenu");
@@ -19,6 +24,11 @@ public class MainMenuScript : MonoBehaviour
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void GoToGameOverMenu()
+    {
+        SceneManager.LoadScene("GameOverMenu");
     }
 
     public void QuitGame()

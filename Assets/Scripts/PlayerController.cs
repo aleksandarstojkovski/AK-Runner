@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -48,11 +50,14 @@ public class PlayerController : MonoBehaviour
 
         scoreText.text = score.ToString();
         bestScoreText.text = "Your score: " + score +"\n"+ "Best score: " + bestScoreEver;
-      
+
+        PlayerPrefs.SetString("GOScore", bestScoreText.text);
 
         if (death == true)
         {
-            gameOverImage.gameObject.SetActive(true);
+            //gameOverImage.gameObject.SetActive(true);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Debug.Log(PlayerPrefs.GetString("GOScore"));
         }
 
 
