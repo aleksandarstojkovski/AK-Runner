@@ -7,65 +7,61 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
+
     public bool jump = false;
     public bool slide = false;
+    private bool isGrounded = true;
+    public bool dead = false;
 
-    public Animator anim;
+    public Animator animator;
     private Rigidbody rigidBody;
-    private BoxCollider capsuleCollider;
-
     public GameObject trigger;
-
-    public float JumpHeight = 10;
-    private bool _isGrounded = true;
-    public float GroundDistance = 10f;
     public LayerMask Ground;
-    public Transform _groundChecker;
-    public float velocita = 5.0f;
-    public float score = 0;
+    public Transform groundChecker;
+    public Text currentScoreText;
 
-    public Text scoreText;
-    public Text bestScoreText;
-    public bool death = false;
-    public Image gameOverImage;
-    public float bestScoreEver;
+    public float jumpHeight = 1f;
+    public float groundDistance = 0.1f;
+    public float speed = 7f;
+    public float speedIncrement = 0.2f;
+    public float animationSpeedIncrement = 0.002f;
+    public float currentScore = 0;
+    public float recordScore;
 
     bool AnimatorIsPlaying(string stateName)
     {
-        return anim.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
-        capsuleCollider = GetComponent<BoxCollider>();
-        bestScoreEver = PlayerPrefs.GetFloat("BestScore");
+        groundChecker = GetComponent<Transform>();
+        recordScore = PlayerPrefs.GetFloat("recordScore");
+    }
+
+    void updateStatusBar() {
+        currentScoreText.text = currentScore.ToString();
+        PlayerPrefs.SetFloat("currentScore", currentScore);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        scoreText.text = score.ToString();
-        bestScoreText.text = "Your score: " + score +"\n"+ "Best score: " + bestScoreEver;
-
-        PlayerPrefs.SetString("GOScore", bestScoreText.text);
-
-        if (death == true)
+        
+        if (dead == true)
         {
-            //gameOverImage.gameObject.SetActive(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            Debug.Log(PlayerPrefs.GetString("GOScore"));
         }
 
+        updateStatusBar();
 
-        _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground, QueryTriggerInteraction.Ignore);
+        isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
 
-        //Movimento giocatore in avanti
-        if (death == false)
-            transform.Translate(0, 0, velocita*Time.deltaTime);
+        // move character
+        transform.Translate(0, 0, speed*Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -85,42 +81,41 @@ public class PlayerController : MonoBehaviour
             slide = false;
         }
 
-        anim.SetBool("isJump", jump);
-        anim.SetBool("isSlide", slide);
+        animator.SetBool("isJump", jump);
+        animator.SetBool("isSlide", slide);
 
-        if (jump == true && _isGrounded)
+        if (jump == true && isGrounded)
         {
-            //transform.Translate(0, 2f* Time.deltaTime, 0.1f*Time.deltaTime);
-            rigidBody.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            rigidBody.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
 
-        trigger = GameObject.FindGameObjectWithTag("Obstacle");
-        velocita += 0.002f;
-        anim.speed += 0.00002f;
+        // ?
+        //trigger = GameObject.FindGameObjectWithTag("Obstacle");
 
     }
 
     void OnTriggerEnter(Collider other) {
-        //Debug.Log(other);
+
         if (other.gameObject.tag == "Player") {
             Destroy(trigger.gameObject);
         }
+
         if (other.gameObject.tag == "Coin") {
             Destroy(other.gameObject,0.5f);
-            score += 5f;
+            currentScore += 5f;
+            speed += speedIncrement;
+            animator.speed += animationSpeedIncrement;
         }
+
         if (other.gameObject.tag == "Obstacle")
         {
-            Debug.Log("Colpito ostacolo " + trigger.name);
-            death = true;
-            if (score > bestScoreEver)
+            dead = true;
+            if (currentScore > recordScore)
             {
-                PlayerPrefs.SetFloat("BestScore", score);
+                PlayerPrefs.SetFloat("recordScore", currentScore);
             }
         }
-        if (other.gameObject.tag == "DeathPoint") {
-            
-        }
+
     }
 
 }
