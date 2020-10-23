@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 583607089}
   - component: {fileID: 583607088}
   m_Layer: 5
-  m_Name: currentMoneyText
+  m_Name: currentCoinsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -518,9 +518,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Money
-
-'
+  m_Text: Coins
 --- !u!222 &583607089
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -619,17 +617,15 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 256
-  groundChecker: {fileID: 0}
-  currentScoreText: {fileID: 1536073420}
-  currentMoneyText: {fileID: 583607088}
+  groundChecker: {fileID: 642717139}
   jumpHeight: 1
-  groundDistance: 0.1
+  groundDistance: 0.2
   speed: 7
   speedIncrement: 0.2
   animationSpeedIncrement: 0.002
   currentScore: 0
-  highScore: 0
-  currentMoney: 0
+  currentCoins: 0
+  recordScore: 0
 --- !u!65 &699177863
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -850,6 +846,7 @@ GameObject:
   - component: {fileID: 1038002785}
   - component: {fileID: 1038002784}
   - component: {fileID: 1038002783}
+  - component: {fileID: 1038002787}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -937,6 +934,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1038002787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038002782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf22d0ada9679545804f854b34e12a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1052414952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,6 +1338,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c7f879cbf62dde4da3fa91c82265c51, type: 3}
+--- !u!1 &2003013715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2003013716}
+  - component: {fileID: 2003013717}
+  m_Layer: 0
+  m_Name: ScoreController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2003013716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003013715}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 409.28574, y: 230, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2003013717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003013715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec16376182748154584789fb9bd4ab4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentScoreText: {fileID: 1536073420}
+  currentCoinsText: {fileID: 583607088}
+  recordScore: 0
 --- !u!1 &2046417070 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4817132848101939197, guid: b1440fab934a57845951f53a84716345, type: 3}

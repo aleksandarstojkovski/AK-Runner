@@ -42,4 +42,9 @@ public class MainMenuScript : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Ranking()
+    {
+        SceneManager.LoadScene("RankingMenu");
+    }
 }

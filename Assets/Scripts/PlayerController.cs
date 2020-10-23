@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Newtonsoft.Json;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,17 +19,18 @@ public class PlayerController : MonoBehaviour
     public GameObject trigger;
     public LayerMask Ground;
     public Transform groundChecker;
-    public Text currentScoreText;
-    public Text currentMoneyText;
+    public PlayerMetadata playerMetadata;
 
     public float jumpHeight = 1f;
-    public float groundDistance = 0.1f;
+    public float groundDistance = 0.2f;
     public float speed = 7f;
     public float speedIncrement = 0.2f;
     public float animationSpeedIncrement = 0.002f;
     public float currentScore = 0;
-    public float highScore;
-    public float currentMoney;
+    public float currentCoins = 0;
+    public float recordScore = 0;
+
+    public List<PlayerMetadata> ranking = new List<PlayerMetadata>();
 
     bool AnimatorIsPlaying(string stateName)
     {
@@ -41,30 +43,28 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
         groundChecker = GetComponent<Transform>();
-        highScore = Mathf.Round(PlayerPrefs.GetFloat("recordScore"));
-        currentMoney = Mathf.Round(PlayerPrefs.GetFloat("coins"));
-        //currentScoreText.text = currentScore.ToString();
-        //currentMoneyText.text = currentMoney.ToString();
+        currentCoins = Mathf.Round(PlayerPrefs.GetFloat("coins", 0));
+        recordScore = Mathf.Round(PlayerPrefs.GetFloat("recordScore", 0));
+        playerMetadata = new PlayerMetadata(currentCoins, currentScore, "Player1");
     }
 
-    void updateStatusBar() {
-        currentScoreText.text = "Score: " + Mathf.Round (currentScore).ToString();
-        PlayerPrefs.SetFloat("currentScore", currentScore);
-        currentMoneyText.text = "Coins: " + currentMoney.ToString();
+    void updatePlayerMetadata() {
+        playerMetadata.update(currentCoins, currentScore);
+        Messenger<PlayerMetadata>.Broadcast(GameEvent.UPDATE_METADATA, playerMetadata);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        currentScore += 5 * Time.deltaTime;
-        
+        updatePlayerMetadata();
+
         if (dead == true)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
-        updateStatusBar();
+        currentScore += 5 * Time.deltaTime;
 
         isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
 
@@ -97,9 +97,11 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
 
-        // ?
-        //trigger = GameObject.FindGameObjectWithTag("Obstacle");
+    }
 
+    void updateJson() {
+        ranking.Add(playerMetadata);
+        Debug.Log(JsonConvert.SerializeObject(ranking).ToString());
     }
 
     void OnTriggerEnter(Collider other) {
@@ -110,19 +112,19 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Coin") {
             Destroy(other.gameObject,0.5f);
-            currentMoney += 5f;
+            currentCoins += 1f;
             speed += speedIncrement;
             animator.speed += animationSpeedIncrement;
-            PlayerPrefs.SetFloat("coins", currentMoney);
         }
 
         if (other.gameObject.tag == "Obstacle")
         {
             dead = true;
-            if (currentScore > highScore)
-            {
-                PlayerPrefs.SetFloat("recordScore", Mathf.Round(currentScore));
+            if (currentScore > recordScore) {
+                recordScore = currentScore;
+                Messenger<float>.Broadcast(GameEvent.NEW_RECORD, recordScore);
             }
+            updateJson();
         }
 
     }
