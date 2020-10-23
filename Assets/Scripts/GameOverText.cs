@@ -10,7 +10,7 @@ public class GameOverText : MonoBehaviour
     void Start()
     {
         Text gameOverText = GetComponent<Text>();
-        gameOverText.text = "Your score: " + PlayerPrefs.GetFloat("currentScore") + "\n" + "Best score: " + PlayerPrefs.GetFloat("recordScore");
+        gameOverText.text = "Your score: " + Mathf.Round(PlayerPrefs.GetFloat("currentScore")) + "\n" + "Best score: " + Mathf.Round(PlayerPrefs.GetFloat("recordScore"));
     }
 
     // Update is called once per frame

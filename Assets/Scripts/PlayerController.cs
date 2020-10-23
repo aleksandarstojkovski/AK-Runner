@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask Ground;
     public Transform groundChecker;
     public Text currentScoreText;
+    public Text currentMoneyText;
 
     public float jumpHeight = 1f;
     public float groundDistance = 0.1f;
@@ -26,7 +27,8 @@ public class PlayerController : MonoBehaviour
     public float speedIncrement = 0.2f;
     public float animationSpeedIncrement = 0.002f;
     public float currentScore = 0;
-    public float recordScore;
+    public float highScore;
+    public float currentMoney;
 
     bool AnimatorIsPlaying(string stateName)
     {
@@ -39,17 +41,23 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
         groundChecker = GetComponent<Transform>();
-        recordScore = PlayerPrefs.GetFloat("recordScore");
+        highScore = Mathf.Round(PlayerPrefs.GetFloat("recordScore"));
+        currentMoney = Mathf.Round(PlayerPrefs.GetFloat("coins"));
+        //currentScoreText.text = currentScore.ToString();
+        //currentMoneyText.text = currentMoney.ToString();
     }
 
     void updateStatusBar() {
-        currentScoreText.text = currentScore.ToString();
+        currentScoreText.text = "Score: " + Mathf.Round (currentScore).ToString();
         PlayerPrefs.SetFloat("currentScore", currentScore);
+        currentMoneyText.text = "Coins: " + currentMoney.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        currentScore += 5 * Time.deltaTime;
         
         if (dead == true)
         {
@@ -102,17 +110,18 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Coin") {
             Destroy(other.gameObject,0.5f);
-            currentScore += 5f;
+            currentMoney += 5f;
             speed += speedIncrement;
             animator.speed += animationSpeedIncrement;
+            PlayerPrefs.SetFloat("coins", currentMoney);
         }
 
         if (other.gameObject.tag == "Obstacle")
         {
             dead = true;
-            if (currentScore > recordScore)
+            if (currentScore > highScore)
             {
-                PlayerPrefs.SetFloat("recordScore", currentScore);
+                PlayerPrefs.SetFloat("recordScore", Mathf.Round(currentScore));
             }
         }
 
