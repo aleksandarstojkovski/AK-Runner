@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     public bool jump = false;
     public bool slide = false;
+    public bool left = false;
+    public bool right = false;
     private bool isGrounded = true;
     public bool dead = false;
 
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip[] slideAudioClips;
 
     public float jumpHeight = 1f;
+    public float leftRightForce = 2f;
     public float groundDistance = 0.2f;
     public float speed = 8f;
     public float speedIncrement = 0.2f;
@@ -34,6 +37,8 @@ public class PlayerController : MonoBehaviour
     public float currentScore = 0;
     public float currentCoins = 0;
     public float recordScore = 0;
+
+    Vector3 targetPosition;
 
     public List<PlayerMetadata> ranking = new List<PlayerMetadata>();
 
@@ -63,6 +68,10 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("isJump", jump);
         animator.SetBool("isSlide", slide);
+        animator.SetBool("isLeft", left);
+        animator.SetBool("isRight", right);
+
+        targetPosition = transform.position;
     }
 
     void updatePlayerMetadata() {
@@ -90,6 +99,10 @@ public class PlayerController : MonoBehaviour
         updatePlayerMetadata();
 
         playAudio();
+
+        targetPosition.y = transform.position.y;
+        targetPosition.z = transform.position.z;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5*Time.deltaTime);
 
         if (dead == true)
         {
@@ -127,6 +140,24 @@ public class PlayerController : MonoBehaviour
             slide = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            left = true;
+        }
+        else
+        {
+            left = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            right = true;
+        }
+        else
+        {
+            right = false;
+        }
+
         animator.SetBool("isJump", jump);
         animator.SetBool("isSlide", slide);
 
@@ -139,6 +170,18 @@ public class PlayerController : MonoBehaviour
         if (slide == true && !isGrounded)
         {
             rigidBody.AddForce(Vector3.down * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+        }
+
+        if (left) {
+            // rigidBody.AddForce(Vector3.left * Mathf.Sqrt(leftRightForce * -2f * Physics.gravity.y), ForceMode.VelocityChange);           
+            // transform.Translate(-9f * Time.deltaTime, 0, 0);
+            targetPosition.x += -1;
+        }
+
+        if (right) {
+            // rigidBody.AddForce(Vector3.right * Mathf.Sqrt(leftRightForce * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            // transform.Translate(9f*Time.deltaTime, 0, 0);
+            targetPosition.x += 1;
         }
 
     }
