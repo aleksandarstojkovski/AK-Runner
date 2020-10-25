@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool right = false;
     private bool isGrounded = true;
     public bool dead = false;
+    public bool boost = false;
 
     public Animator animator;
     private Rigidbody rigidBody;
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour
     public float currentScore = 0;
     public float currentCoins = 0;
     public float recordScore = 0;
+    public float boostMultiplier = 1;
+    public float boostMultiplierDefault = 1;
 
     Vector3 targetPosition;
 
@@ -179,7 +182,7 @@ public class PlayerController : MonoBehaviour
     void moveForward()
     {
         // move character
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        transform.Translate(0, 0, speed * Time.deltaTime* boostMultiplier);
     }
 
     void graduallyMoveLeftAndRight() {
@@ -190,7 +193,7 @@ public class PlayerController : MonoBehaviour
 
     void updateScore()
     {
-        currentScore += 5 * Time.deltaTime;
+        currentScore += 5 * Time.deltaTime* boostMultiplier;
     }
 
     // Update is called once per frame
@@ -231,7 +234,7 @@ public class PlayerController : MonoBehaviour
             animator.speed += animationSpeedIncrement;
         }
 
-        if (other.gameObject.tag == "Obstacle")
+        if (other.gameObject.tag == "Obstacle" && !boost)
         {
             dead = true;
             if (currentScore > recordScore) {
@@ -241,6 +244,23 @@ public class PlayerController : MonoBehaviour
             updateJson();
         }
 
+        if (other.gameObject.tag == "Boost")
+        {
+            Destroy(other.gameObject, 0.5f);
+            StartCoroutine(Boost());            
+        }
+
+    }
+
+    IEnumerator Boost()
+    {
+        boost = true;
+        boostMultiplier *= 5;
+        yield return new WaitForSeconds(5);
+        boostMultiplier = boostMultiplierDefault;
+        // wait another 1s with normal speed, so player can resume normal game
+        yield return new WaitForSeconds(1);
+        boost = false;
     }
 
 }
