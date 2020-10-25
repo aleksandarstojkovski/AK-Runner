@@ -92,43 +92,32 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void checkDead()
     {
-
-        updatePlayerMetadata();
-
-        playAudio();
-
-        targetPosition.y = transform.position.y;
-        targetPosition.z = transform.position.z;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5*Time.deltaTime);
-
         if (dead == true)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
 
-        currentScore += 5 * Time.deltaTime;
+    void processInput()
+    {
 
         isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, Ground, QueryTriggerInteraction.Ignore);
 
-        // move character
-        transform.Translate(0, 0, speed*Time.deltaTime);
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isGrounded)
         {
             jump = true;
             jumpAndSlideAudioSource.Stop();
             jumpAndSlideAudioSource.PlayOneShot(jumpAudioClips[Random.Range(0, jumpAudioClips.Length)]);
             animator.Play("Jump");
-        } 
+        }
         else
         {
             jump = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             slide = true;
             jumpAndSlideAudioSource.Stop();
@@ -140,7 +129,7 @@ public class PlayerController : MonoBehaviour
             slide = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             left = true;
         }
@@ -149,7 +138,7 @@ public class PlayerController : MonoBehaviour
             left = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             right = true;
         }
@@ -166,23 +155,61 @@ public class PlayerController : MonoBehaviour
             rigidBody.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
 
-        
+
         if (slide == true && !isGrounded)
         {
             rigidBody.AddForce(Vector3.down * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         }
 
-        if (left) {
+        if (left)
+        {
             // rigidBody.AddForce(Vector3.left * Mathf.Sqrt(leftRightForce * -2f * Physics.gravity.y), ForceMode.VelocityChange);           
             // transform.Translate(-9f * Time.deltaTime, 0, 0);
             targetPosition.x += -1;
         }
 
-        if (right) {
+        if (right)
+        {
             // rigidBody.AddForce(Vector3.right * Mathf.Sqrt(leftRightForce * -2f * Physics.gravity.y), ForceMode.VelocityChange);
             // transform.Translate(9f*Time.deltaTime, 0, 0);
             targetPosition.x += 1;
         }
+    }
+
+    void moveForward()
+    {
+        // move character
+        transform.Translate(0, 0, speed * Time.deltaTime);
+    }
+
+    void graduallyMoveLeftAndRight() {
+        targetPosition.y = transform.position.y;
+        targetPosition.z = transform.position.z;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5 * Time.deltaTime);
+    }
+
+    void updateScore()
+    {
+        currentScore += 5 * Time.deltaTime;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        updatePlayerMetadata();
+
+        checkDead();
+
+        playAudio();
+
+        graduallyMoveLeftAndRight();
+
+        updateScore();
+
+        moveForward();
+
+        processInput();
 
     }
 
