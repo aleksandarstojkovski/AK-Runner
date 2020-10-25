@@ -13,6 +13,7 @@ public class CoinRotation : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = 0.02f;
     }
 
     // Update is called once per frame
