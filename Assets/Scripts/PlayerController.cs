@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public float groundDistance = 0.2f;
     public float speed = 8f;
     public float speedIncrement = 0.2f;
-    public float animationSpeedIncrement = 0.01f;
+    public float animationSpeedIncrement = 0.007f;
     public float currentScore = 0;
     public float currentCoins = 0;
     public float recordScore = 0;

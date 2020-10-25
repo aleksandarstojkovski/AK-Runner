@@ -635,7 +635,7 @@ MonoBehaviour:
   groundDistance: 0.2
   speed: 8
   speedIncrement: 0.2
-  animationSpeedIncrement: 0.002
+  animationSpeedIncrement: 0.007
   currentScore: 0
   currentCoins: 0
   recordScore: 0
