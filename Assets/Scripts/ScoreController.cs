@@ -14,6 +14,7 @@ public class ScoreController : MonoBehaviour
     public float recordScore;
     public static ScoreController Instance = null;
     public List<PlayerMetadata> ranking;
+    public string initialString;
 
 
     void Awake()
@@ -43,6 +44,11 @@ public class ScoreController : MonoBehaviour
         Messenger<PlayerMetadata>.AddListener(GameEvent.UPDATE_METADATA, UpdateStatusBar);
         Messenger<PlayerMetadata>.AddListener(GameEvent.STORE_RANKING, StoreRanking);
         Messenger<float>.AddListener(GameEvent.NEW_RECORD, NewRecord);
+
+        initialString = PlayerPrefs.GetString("ranking");
+        ranking = JsonConvert.DeserializeObject<List<PlayerMetadata>>(initialString) as List<PlayerMetadata>;
+        if (ranking == null)
+            ranking = new List<PlayerMetadata>();
     }
 
     // Update is called once per frame
@@ -68,7 +74,8 @@ public class ScoreController : MonoBehaviour
     void StoreRanking(PlayerMetadata playerMetadata)
     {
         ranking.Add(playerMetadata);
-        Debug.Log(JsonConvert.SerializeObject(ranking).ToString());
+        PlayerPrefs.SetString("ranking",JsonConvert.SerializeObject(ranking).ToString());
+        Debug.Log(PlayerPrefs.GetString("ranking"));
     }
 
 }

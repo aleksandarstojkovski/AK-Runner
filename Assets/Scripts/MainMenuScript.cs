@@ -45,6 +45,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void Ranking()
     {
-        SceneManager.LoadScene("RankingMenu");
+        SceneManager.LoadScene("Ranking");
     }
 }
