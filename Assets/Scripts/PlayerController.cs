@@ -241,7 +241,8 @@ public class PlayerController : MonoBehaviour
                 recordScore = currentScore;
                 Messenger<float>.Broadcast(GameEvent.NEW_RECORD, recordScore);
             }
-            updateJson();
+            //updateJson();
+            Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata);
         }
 
         if (other.gameObject.tag == "Boost")

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Newtonsoft.Json;
 
 public class ScoreController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ScoreController : MonoBehaviour
     public Text currentCoinsText;
     public float recordScore;
     public static ScoreController Instance = null;
+    public List<PlayerMetadata> ranking;
 
 
     void Awake()
@@ -37,7 +39,9 @@ public class ScoreController : MonoBehaviour
         currentCoinsText = GameObject.Find("currentCoinsText").GetComponent<Text>();
         currentScoreText = GameObject.Find("currentScoreText").GetComponent<Text>();
         recordScore = Mathf.Round(PlayerPrefs.GetFloat("recordScore"));
+        ranking = new List<PlayerMetadata>();
         Messenger<PlayerMetadata>.AddListener(GameEvent.UPDATE_METADATA, UpdateStatusBar);
+        Messenger<PlayerMetadata>.AddListener(GameEvent.STORE_RANKING, StoreRanking);
         Messenger<float>.AddListener(GameEvent.NEW_RECORD, NewRecord);
     }
 
@@ -59,6 +63,12 @@ public class ScoreController : MonoBehaviour
     void NewRecord(float newRecord)
     {
         PlayerPrefs.SetFloat("recordScore", newRecord);
+    }
+
+    void StoreRanking(PlayerMetadata playerMetadata)
+    {
+        ranking.Add(playerMetadata);
+        Debug.Log(JsonConvert.SerializeObject(ranking).ToString());
     }
 
 }

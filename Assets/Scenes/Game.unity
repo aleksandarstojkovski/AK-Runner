@@ -1643,6 +1643,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinTile01
       objectReference: {fileID: 0}
+    - target: {fileID: 4505084703398320214, guid: 5c7f879cbf62dde4da3fa91c82265c51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683090743625801826, guid: 5c7f879cbf62dde4da3fa91c82265c51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191049079417503376, guid: 5c7f879cbf62dde4da3fa91c82265c51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314262191545627004, guid: 5c7f879cbf62dde4da3fa91c82265c51, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c7f879cbf62dde4da3fa91c82265c51, type: 3}
 --- !u!1 &2003013715
