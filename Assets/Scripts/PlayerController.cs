@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource jumpAndSlideAudioSource;
     public AudioClip[] jumpAudioClips;
     public AudioClip[] slideAudioClips;
+    Vector3 targetXPosition;
 
     public float jumpHeight = 1f;
     public float leftRightForce = 2f;
@@ -40,8 +41,7 @@ public class PlayerController : MonoBehaviour
     public float recordScore = 0;
     public float boostMultiplier = 1;
     public float boostMultiplierDefault = 1;
-
-    Vector3 targetPosition;
+    public float coinValue = 1f;
 
     public List<PlayerMetadata> ranking = new List<PlayerMetadata>();
 
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isLeft", left);
         animator.SetBool("isRight", right);
 
-        targetPosition = transform.position;
+        targetXPosition = transform.position;
     }
 
     void updatePlayerMetadata() {
@@ -168,14 +168,14 @@ public class PlayerController : MonoBehaviour
         {
             // rigidBody.AddForce(Vector3.left * Mathf.Sqrt(leftRightForce * -2f * Physics.gravity.y), ForceMode.VelocityChange);           
             // transform.Translate(-9f * Time.deltaTime, 0, 0);
-            targetPosition.x += -1;
+            targetXPosition.x += -1;
         }
 
         if (right)
         {
             // rigidBody.AddForce(Vector3.right * Mathf.Sqrt(leftRightForce * -2f * Physics.gravity.y), ForceMode.VelocityChange);
             // transform.Translate(9f*Time.deltaTime, 0, 0);
-            targetPosition.x += 1;
+            targetXPosition.x += 1;
         }
     }
 
@@ -186,9 +186,9 @@ public class PlayerController : MonoBehaviour
     }
 
     void graduallyMoveLeftAndRight() {
-        targetPosition.y = transform.position.y;
-        targetPosition.z = transform.position.z;
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5 * Time.deltaTime);
+        targetXPosition.y = transform.position.y;
+        targetXPosition.z = transform.position.z;
+        transform.position = Vector3.MoveTowards(transform.position, targetXPosition, 5 * Time.deltaTime);
     }
 
     void updateScore()
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Coin") {
             Destroy(other.gameObject,0.5f);
-            currentCoins += 1f;
+            currentCoins += coinValue;
             speed += speedIncrement;
             animator.speed += animationSpeedIncrement;
         }
