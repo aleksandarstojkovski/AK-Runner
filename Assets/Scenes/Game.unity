@@ -741,6 +741,7 @@ MonoBehaviour:
   recordScore: 0
   boostMultiplier: 1
   boostMultiplierDefault: 1
+  coinValue: 1
 --- !u!65 &699177863
 BoxCollider:
   m_ObjectHideFlags: 0
