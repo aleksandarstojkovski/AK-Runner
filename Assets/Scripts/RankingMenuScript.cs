@@ -9,4 +9,5 @@ public class RankingMenuScript : MonoBehaviour
     public void Quit() {
         SceneManager.LoadScene("MainMenu");
     }
+
 }

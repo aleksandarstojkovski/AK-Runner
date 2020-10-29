@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,11 +38,16 @@ public class RankingTable : MonoBehaviour
             }
         }
 
+        // only 10 best scores
+        rankings = rankings.Take(10).ToList();
+
         playerMetadataTransformList = new List<Transform>();
+
         foreach (PlayerMetadata playerMetadata in rankings)
         {
             CreateHighscoreEntryTransform(playerMetadata, entryContainer, playerMetadataTransformList);
         }
+
     }
 
     private void CreateHighscoreEntryTransform(PlayerMetadata playerMetadata, Transform container, List<Transform> transformList)

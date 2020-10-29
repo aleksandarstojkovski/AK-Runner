@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void updatePlayerMetadata() {
-        playerMetadata.update(currentCoins, currentScore);
+        playerMetadata.update(Mathf.Round(currentCoins), Mathf.Round(currentScore));
         Messenger<PlayerMetadata>.Broadcast(GameEvent.UPDATE_METADATA, playerMetadata);
     }
 
@@ -216,11 +216,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void updateJson() {
-        ranking.Add(playerMetadata);
-        Debug.Log(JsonConvert.SerializeObject(ranking).ToString());
-    }
-
     void OnTriggerEnter(Collider other) {
 
         if (other.gameObject.tag == "Player") {
@@ -238,10 +233,9 @@ public class PlayerController : MonoBehaviour
         {
             dead = true;
             if (currentScore > recordScore) {
-                recordScore = currentScore;
+                recordScore = Mathf.Round(currentScore);
                 Messenger<float>.Broadcast(GameEvent.NEW_RECORD, recordScore);
             }
-            //updateJson();
             Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata);
         }
 

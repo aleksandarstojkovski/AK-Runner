@@ -7,16 +7,13 @@ public class RoadSpawner : MonoBehaviour
 
 	public GameObject[] Prefabs;
 	private Transform Player;
-
 	private List<GameObject> ActivePrefabs;
-
 
 	public float BackArea = 200.0f;
 	public int PrefabsOnScreen = 4;
 	public int LastPrefab = 0;
 	public float SpawnPrefab = -100.0f;
 	public float PrefabLength = 99.0f;
-
 
 	private void Start()
 	{

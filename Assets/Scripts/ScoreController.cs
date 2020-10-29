@@ -16,7 +16,6 @@ public class ScoreController : MonoBehaviour
     public List<PlayerMetadata> ranking;
     public string initialString;
 
-
     void Awake()
     {
         // singleton
@@ -58,7 +57,7 @@ public class ScoreController : MonoBehaviour
     }
 
     void UpdateStatusBar(PlayerMetadata playerMetadata) {
-        float score = Mathf.Round(playerMetadata.getScore());
+        float score = playerMetadata.getScore();
         float coins = playerMetadata.getCoins();
         currentScoreText.text = "Score: " + score.ToString();
         currentCoinsText.text = "Coins: " + coins.ToString();
