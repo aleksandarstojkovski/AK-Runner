@@ -23,7 +23,7 @@ public class RoadSpawner : MonoBehaviour
 		for (int i = 0; i < PrefabsOnScreen; i++)
 		{
 			if (i < 4)
-				Spawn(0);
+				Spawn();
 			else
 				Spawn();
 		}

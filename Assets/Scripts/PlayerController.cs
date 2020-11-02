@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         if (dead == true)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene("GameOverMenu");
         }
     }
 
