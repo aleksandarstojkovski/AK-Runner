@@ -10,7 +10,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void Start()
     {
-        currentMoneyText.text = "Coins: " + PlayerPrefs.GetFloat("coins").ToString();
+        //currentMoneyText.text = "Coins: " + PlayerPrefs.GetFloat("coins").ToString();
     }
 
     public void PlayGame()
@@ -30,7 +30,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("NewMainMenu");
     }
 
     public void GoToGameOverMenu()

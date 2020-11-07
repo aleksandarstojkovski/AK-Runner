@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
     void checkDead()
     {
+        Debug.Log("controllo se morto");
         if (dead == true)
         {
             SceneManager.LoadScene("GameOverMenu");
@@ -231,6 +232,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Obstacle" && !boost)
         {
+            Debug.Log("morto");
             dead = true;
             if (currentScore > recordScore) {
                 recordScore = Mathf.Round(currentScore);
