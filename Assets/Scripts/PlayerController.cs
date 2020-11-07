@@ -215,6 +215,9 @@ public class PlayerController : MonoBehaviour
 
         processInput();
 
+        // TODO: remove
+        speed += speedIncrement*Time.deltaTime;
+        animator.speed += animationSpeedIncrement*Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider other) {
