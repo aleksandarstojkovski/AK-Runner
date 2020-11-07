@@ -48,6 +48,9 @@ public class ScoreController : MonoBehaviour
         ranking = JsonConvert.DeserializeObject<List<PlayerMetadata>>(initialString) as List<PlayerMetadata>;
         if (ranking == null)
             ranking = new List<PlayerMetadata>();
+
+        currentScoreText.text = "Score: " + PlayerPrefs.GetFloat("currentScore", 0);
+        currentCoinsText.text = "Coins: " + PlayerPrefs.GetFloat("coins",0);
     }
 
     // Update is called once per frame
@@ -74,7 +77,7 @@ public class ScoreController : MonoBehaviour
     {
         ranking.Add(playerMetadata);
         PlayerPrefs.SetString("ranking",JsonConvert.SerializeObject(ranking).ToString());
-        Debug.Log(PlayerPrefs.GetString("ranking"));
+        //Debug.Log(PlayerPrefs.GetString("ranking"));
     }
 
 }

@@ -19,7 +19,7 @@ public class GameOverMenuScript : MonoBehaviour
 		if (menuButtonController.index == thisIndex)
 		{
 			animator.SetBool("selected", true);
-			if (Input.GetAxis("Submit") == 1)
+			if (Input.GetKeyDown(KeyCode.Return))
 			{
 				animator.SetBool("pressed", true);
 				CheckButtons();
@@ -39,7 +39,6 @@ public class GameOverMenuScript : MonoBehaviour
 	public void CheckButtons()
 	{
 		Wait(0.6f, () => {
-			//Debug.Log("5 seconds is lost forever");
 			checkQuitButton();
 		});
 	}
