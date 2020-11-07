@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     void updatePlayerMetadata() {
         playerMetadata.update(Mathf.Round(currentCoins), Mathf.Round(currentScore));
-        Messenger<PlayerMetadata>.Broadcast(GameEvent.UPDATE_METADATA, playerMetadata);
+        Messenger<PlayerMetadata>.Broadcast(GameEvent.UPDATE_METADATA, playerMetadata,MessengerMode.DONT_REQUIRE_LISTENER);
     }
 
     void playAudio() {
@@ -238,9 +238,9 @@ public class PlayerController : MonoBehaviour
             dead = true;
             if (currentScore > recordScore) {
                 recordScore = Mathf.Round(currentScore);
-                Messenger<float>.Broadcast(GameEvent.NEW_RECORD, recordScore);
+                Messenger<float>.Broadcast(GameEvent.NEW_RECORD, recordScore, MessengerMode.DONT_REQUIRE_LISTENER);
             }
-            Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata);
+            Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata, MessengerMode.DONT_REQUIRE_LISTENER);
         }
 
         if (other.gameObject.tag == "Boost")
