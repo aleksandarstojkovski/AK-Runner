@@ -39,7 +39,7 @@ public class RankingTable : MonoBehaviour
         }
 
         // only 10 best scores
-        rankings = rankings.Take(10).ToList();
+        rankings = rankings.Take(8).ToList();
 
         playerMetadataTransformList = new List<Transform>();
 
