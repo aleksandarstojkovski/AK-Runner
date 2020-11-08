@@ -12,6 +12,14 @@ public class MenuButton : MonoBehaviour
 	[SerializeField] MenuButton menuButton;
 	[SerializeField] int thisIndex;
 
+    private void Start()
+    {
+		if (!PlayerPrefs.HasKey("map"))
+		{
+			PlayerPrefs.SetString("map", "Desert");
+		}
+	}
+
     // Update is called once per frame
     void Update()
     {
@@ -59,7 +67,8 @@ public class MenuButton : MonoBehaviour
 			{
 				// do something
 			}
-			SceneManager.LoadScene("GameDesert");
+			Debug.Log("Caricato mappa " + PlayerPrefs.GetString("map"));
+			SceneManager.LoadScene("Game" + PlayerPrefs.GetString("map"));
 		}
 	}
 

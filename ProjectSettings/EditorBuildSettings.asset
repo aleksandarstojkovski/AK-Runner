@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SettingsMenu.unity
     guid: 5e5990501b9b3f94aaf6cb593a0d8e9d
+  - enabled: 1
+    path: Assets/Scenes/GameStreet.unity
+    guid: 40fd62defc30a554d949e28f384d735e
   m_configObjects: {}
