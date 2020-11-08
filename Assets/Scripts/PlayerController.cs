@@ -23,11 +23,6 @@ public class PlayerController : MonoBehaviour
     public LayerMask Ground;
     public Transform groundChecker;
     public PlayerMetadata playerMetadata;
-    public AudioSource runningAudioSource;
-    public AudioClip runningAudioClip;
-    public AudioSource jumpAndSlideAudioSource;
-    public AudioClip[] jumpAudioClips;
-    public AudioClip[] slideAudioClips;
     Vector3 targetXPosition;
 
     public float jumpHeight = 1f;
@@ -65,9 +60,7 @@ public class PlayerController : MonoBehaviour
         recordScore = Mathf.Round(PlayerPrefs.GetFloat("recordScore", 0));
         playerMetadata = new PlayerMetadata(currentCoins, currentScore, "Player1");
 
-        runningAudioSource.PlayOneShot(runningAudioClip);
-        runningAudioSource.PlayScheduled(AudioSettings.dspTime + runningAudioClip.length);
-        runningAudioSource.volume = 0.1f;
+        Messenger.Broadcast(GameEvent.PLAY_AND_SCHEDULE_RUNNING_SOUND,MessengerMode.DONT_REQUIRE_LISTENER);
 
         animator.SetBool("isJump", jump);
         animator.SetBool("isSlide", slide);
@@ -86,11 +79,11 @@ public class PlayerController : MonoBehaviour
         // if jump or slide animation is in progress, stop running audio
         if (( AnimatorIsPlaying(animator,0,"BaseLayer.Jump") || AnimatorIsPlaying(animator, 0, "BaseLayer.Running Slide")) && AnimatorProgressPercentage(animator,0, "BaseLayer.Jump")<80)
         {
-            runningAudioSource.Pause();
+            Messenger.Broadcast(GameEvent.PAUSE_RUNNING_SOUND);
         }
         else
         {
-            runningAudioSource.UnPause();
+            Messenger.Broadcast(GameEvent.UNPAUSE_RUNNING_SOUND);
         }
 
     }
@@ -112,8 +105,7 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isGrounded)
         {
             jump = true;
-            jumpAndSlideAudioSource.Stop();
-            jumpAndSlideAudioSource.PlayOneShot(jumpAudioClips[Random.Range(0, jumpAudioClips.Length)]);
+            Messenger.Broadcast(GameEvent.PLAY_JUMP_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
             animator.Play("Jump");
         }
         else
@@ -124,8 +116,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             slide = true;
-            jumpAndSlideAudioSource.Stop();
-            jumpAndSlideAudioSource.PlayOneShot(slideAudioClips[Random.Range(0, slideAudioClips.Length)]);
+            Messenger.Broadcast(GameEvent.PLAY_SLIDE_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
             animator.Play("Running Slide");
         }
         else
@@ -241,6 +232,7 @@ public class PlayerController : MonoBehaviour
                 Messenger<float>.Broadcast(GameEvent.NEW_RECORD, recordScore, MessengerMode.DONT_REQUIRE_LISTENER);
             }
             Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata, MessengerMode.DONT_REQUIRE_LISTENER);
+            Messenger.Broadcast(GameEvent.STOP_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         }
 
         if (other.gameObject.tag == "Boost")
