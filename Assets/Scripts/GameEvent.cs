@@ -9,4 +9,5 @@
     public const string PLAY_SLIDE_SOUND = "PLAY_SLIDE_SOUND";
     public const string STOP_RUNNING_SOUND = "STOP_RUNNING_SOUND";
     public const string PLAY_JUMP_SOUND = "PLAY_JUMP_SOUND";
+    public const string PLAY_SETTINGS_SOUND = "PLAY_SETTINGS_SOUND";
 }

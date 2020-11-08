@@ -9,7 +9,7 @@ public class AnimatorFunctions : MonoBehaviour
 
 	void PlaySound(AudioClip whichSound){
 		if(!disableOnce){
-			menuButtonController.audioSource.PlayOneShot (whichSound);
+			Messenger<AudioClip>.Broadcast(GameEvent.PLAY_SETTINGS_SOUND,whichSound,MessengerMode.DONT_REQUIRE_LISTENER);
 		}else{
 			disableOnce = false;
 		}

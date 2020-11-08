@@ -19,7 +19,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayGame()
     {
-        Debug.Log("Caricato mappa " + PlayerPrefs.GetString("map"));
+        // Debug.Log("Caricato mappa " + PlayerPrefs.GetString("map"));
         SceneManager.LoadScene("Game" + PlayerPrefs.GetString("map"));
     }
 

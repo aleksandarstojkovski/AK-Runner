@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public float boostMultiplier = 1;
     public float boostMultiplierDefault = 1;
     public float coinValue = 1f;
+    public float horizontalSpeed = 5.5f;
 
     public List<PlayerMetadata> ranking = new List<PlayerMetadata>();
 
@@ -79,11 +80,11 @@ public class PlayerController : MonoBehaviour
         // if jump or slide animation is in progress, stop running audio
         if (( AnimatorIsPlaying(animator,0,"BaseLayer.Jump") || AnimatorIsPlaying(animator, 0, "BaseLayer.Running Slide")) && AnimatorProgressPercentage(animator,0, "BaseLayer.Jump")<80)
         {
-            Messenger.Broadcast(GameEvent.PAUSE_RUNNING_SOUND);
+            Messenger.Broadcast(GameEvent.PAUSE_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         }
         else
         {
-            Messenger.Broadcast(GameEvent.UNPAUSE_RUNNING_SOUND);
+            Messenger.Broadcast(GameEvent.UNPAUSE_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         }
 
     }
@@ -180,7 +181,7 @@ public class PlayerController : MonoBehaviour
     void graduallyMoveLeftAndRight() {
         targetXPosition.y = transform.position.y;
         targetXPosition.z = transform.position.z;
-        transform.position = Vector3.MoveTowards(transform.position, targetXPosition, 5 * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetXPosition, horizontalSpeed * Time.deltaTime);
     }
 
     void updateScore()

@@ -67,7 +67,7 @@ public class MenuButton : MonoBehaviour
 			{
 				// do something
 			}
-			Debug.Log("Caricato mappa " + PlayerPrefs.GetString("map"));
+			// Debug.Log("Caricato mappa " + PlayerPrefs.GetString("map"));
 			SceneManager.LoadScene("Game" + PlayerPrefs.GetString("map"));
 		}
 	}

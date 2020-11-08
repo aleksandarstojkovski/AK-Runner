@@ -22,11 +22,15 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PLAY_SLIDE_SOUND, playSlideSound);
         Messenger.AddListener(GameEvent.PLAY_JUMP_SOUND, playJumpSound);
         Messenger.AddListener(GameEvent.STOP_RUNNING_SOUND, stopRunningSound);
+        Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
         backgroundMusicAudioSource.volume = 0.04f;
-        runningAudioSource.volume = 0.35f;
+        runningAudioSource.volume = 0.10f;
 
-        backgroundMusicAudioSource.PlayOneShot(backgroundMusicAudioClip);
+        if (!backgroundMusicAudioSource.isPlaying)
+        {
+            backgroundMusicAudioSource.PlayOneShot(backgroundMusicAudioClip);
+        }
     }
 
     // Update is called once per frame
@@ -65,6 +69,11 @@ public class AudioController : MonoBehaviour
     void stopRunningSound()
     {
         runningAudioSource.Stop();
+    }
+
+    void playSettingsSound(AudioClip audioClip)
+    {
+        backgroundMusicAudioSource.PlayOneShot(audioClip);
     }
 
 }
