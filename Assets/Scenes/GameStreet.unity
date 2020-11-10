@@ -219,6 +219,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1001 &525438844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8603181340993425608, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_Name
+      value: Street Map 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603181340993425615, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
 --- !u!1001 &534827776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,15 +289,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1440fab934a57845951f53a84716345, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.162
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1440fab934a57845951f53a84716345, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5
+      value: -7.95
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1440fab934a57845951f53a84716345, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.57
+      value: -4.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b1440fab934a57845951f53a84716345, type: 3}
       propertyPath: m_LocalRotation.x
@@ -638,19 +695,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundChecker: {fileID: 642717139}
-  runningAudioSource: {fileID: 699177865}
-  runningAudioClip: {fileID: 8300000, guid: 8cfd47c86b81d24488795468995eae2f, type: 3}
-  jumpAndSlideAudioSource: {fileID: 699177866}
-  jumpAudioClips:
-  - {fileID: 8300000, guid: bf061b5d3f5012d4f87aaa310ed4c6dd, type: 3}
-  - {fileID: 8300000, guid: fc121220bb729084e8e788a08afdb487, type: 3}
-  - {fileID: 8300000, guid: 7da588ea8edc2b14db48d3ee972d1074, type: 3}
-  - {fileID: 8300000, guid: a7f419bfb0dc1e94abe2eb83d03f1ee5, type: 3}
-  - {fileID: 8300000, guid: 8d4b4003ee794f04eaf0912465754032, type: 3}
-  - {fileID: 8300000, guid: 4a98cd59d68499f4c91f91d09783c830, type: 3}
-  - {fileID: 8300000, guid: c1640eea45a943643837c5f21a8370f2, type: 3}
-  slideAudioClips:
-  - {fileID: 8300000, guid: e30106a8e5631114d818a1f33bad8816, type: 3}
   jumpHeight: 1
   leftRightForce: 2
   groundDistance: 0.2
@@ -663,6 +707,7 @@ MonoBehaviour:
   boostMultiplier: 1
   boostMultiplierDefault: 1
   coinValue: 1
+  horizontalSpeed: 5.5
 --- !u!65 &699177863
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1042,8 +1087,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.10331243, y: -0.007459838, z: 0.000774862, w: 0.99462074}
-  m_LocalPosition: {x: 1.0226357, y: 0.013319805, z: -25.124493}
+  m_LocalRotation: {x: 0.07342583, y: -0.01645668, z: 0.0012118024, w: 0.9971642}
+  m_LocalPosition: {x: 0.8666244, y: -5.803292, z: -8.382127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1159,16 +1204,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefabs:
-  - {fileID: 5480796107667338323, guid: 9dd14cc08b88f9a4b9a39825aed10297, type: 3}
-  - {fileID: 3639192812234428618, guid: 0a4f2f0ef75cec4499551f59d627c1a8, type: 3}
-  - {fileID: 6994876258187925777, guid: 1939b04b66b38874ea97547352027364, type: 3}
-  - {fileID: 7049749612136172827, guid: 6831da2e60a43434ab2338a784a9175e, type: 3}
-  - {fileID: 2908518786936116356, guid: d4bdac88ef53cdc4b806a2b44448818c, type: 3}
-  BackArea: 166
+  - {fileID: 8603181340993425608, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+  - {fileID: 5938881931913452317, guid: 52bc09f95b67b7b4497ac0bb33a29024, type: 3}
+  - {fileID: 1915254607937975631, guid: 7f68bb9102884054ab674eb6e39e43b8, type: 3}
+  - {fileID: 993594191132505103, guid: fb586aaa8a0106d4ab7d8230b4bc624b, type: 3}
+  - {fileID: 4503351775626921337, guid: d61b1ee1762b4674da016667d7c3a4ff, type: 3}
+  BackArea: 172
   PrefabsOnScreen: 4
   LastPrefab: 0
-  SpawnPrefab: 166
-  PrefabLength: 166
+  SpawnPrefab: 172
+  PrefabLength: 172
 --- !u!4 &1635946303
 Transform:
   m_ObjectHideFlags: 0
