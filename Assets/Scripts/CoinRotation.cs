@@ -6,14 +6,10 @@ public class CoinRotation : MonoBehaviour
 {
 
     public bool goUp;
-    public AudioSource audioSource;
-    public AudioClip audioClip;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        audioSource.volume = 0.02f;
     }
 
     // Update is called once per frame
@@ -26,7 +22,7 @@ public class CoinRotation : MonoBehaviour
         }
         else
         {
-            transform.Rotate(0, 0, 1f);
+            transform.Rotate(0, 1.5f, 0);
         }
     }
 
@@ -34,7 +30,7 @@ public class CoinRotation : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             goUp = true;
-            audioSource.PlayOneShot(audioClip, 1);
+            //audioSource.PlayOneShot(audioClip, 1);
         }
     }
 }
