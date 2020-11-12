@@ -18,7 +18,7 @@ public class CoinRotation : MonoBehaviour
         if (goUp == true)
         {
             transform.Rotate(0, 0, 0);
-            transform.Translate(0, 0.4f, 0);
+            transform.Translate(0, 0, 0.4f);
         }
         else
         {
@@ -30,7 +30,7 @@ public class CoinRotation : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             goUp = true;
-            //audioSource.PlayOneShot(audioClip, 1);
+            Messenger.Broadcast(GameEvent.PLAY_COIN_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         }
     }
 }

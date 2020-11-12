@@ -514,6 +514,7 @@ MonoBehaviour:
   backgroundMusicAudioClip: {fileID: 8300000, guid: 13ba12a1cf747e04b9a138ef82803ec2, type: 3}
   runningAudioSource: {fileID: 535302231}
   runningAudioClip: {fileID: 8300000, guid: 8cfd47c86b81d24488795468995eae2f, type: 3}
+  coinAudioClip: {fileID: 8300000, guid: 267de6af862cdbd43a04b8fb67bcd51e, type: 3}
   jumpAndSlideAudioSource: {fileID: 535302234}
   backgroundMusicAudioSource: {fileID: 535302236}
 --- !u!4 &535302233

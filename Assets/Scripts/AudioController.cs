@@ -10,6 +10,7 @@ public class AudioController : MonoBehaviour
     public AudioClip backgroundMusicAudioClip;
     public AudioSource runningAudioSource;
     public AudioClip runningAudioClip;
+    public AudioClip coinAudioClip;
     public AudioSource jumpAndSlideAudioSource;
     public AudioSource backgroundMusicAudioSource;
 
@@ -22,6 +23,7 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PLAY_SLIDE_SOUND, playSlideSound);
         Messenger.AddListener(GameEvent.PLAY_JUMP_SOUND, playJumpSound);
         Messenger.AddListener(GameEvent.STOP_RUNNING_SOUND, stopRunningSound);
+        Messenger.AddListener(GameEvent.PLAY_COIN_SOUND, playCoinSound);
         Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
         backgroundMusicAudioSource.volume = 0.04f;
@@ -74,6 +76,11 @@ public class AudioController : MonoBehaviour
     void playSettingsSound(AudioClip audioClip)
     {
         backgroundMusicAudioSource.PlayOneShot(audioClip);
+    }
+
+    void playCoinSound()
+    {
+        backgroundMusicAudioSource.PlayOneShot(coinAudioClip);
     }
 
 }
