@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public float boostMultiplierDefault = 1;
     public float coinValue = 1f;
     public float horizontalSpeed = 5.5f;
+    public float leftRightMovement = 1f;
 
     public List<PlayerMetadata> ranking = new List<PlayerMetadata>();
 
@@ -161,14 +162,14 @@ public class PlayerController : MonoBehaviour
         {
             // rigidBody.AddForce(Vector3.left * Mathf.Sqrt(leftRightForce * -2f * Physics.gravity.y), ForceMode.VelocityChange);           
             // transform.Translate(-9f * Time.deltaTime, 0, 0);
-            targetXPosition.x += -1;
+            targetXPosition.x += -leftRightMovement;
         }
 
         if (right)
         {
             // rigidBody.AddForce(Vector3.right * Mathf.Sqrt(leftRightForce * -2f * Physics.gravity.y), ForceMode.VelocityChange);
             // transform.Translate(9f*Time.deltaTime, 0, 0);
-            targetXPosition.x += 1;
+            targetXPosition.x += leftRightMovement;
         }
     }
 
