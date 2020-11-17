@@ -61,7 +61,7 @@ public class GameOverMenuScript : MonoBehaviour
 			{
 				// do nothing
 			}
-			SceneManager.LoadScene("GameDesert");
+			SceneManager.LoadScene("Game"+PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME));
 		}
 		if (menuButton.GetComponentInChildren<Text>().text.Contains("quit"))
 		{

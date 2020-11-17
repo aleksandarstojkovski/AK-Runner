@@ -14,10 +14,6 @@ public class MenuButton : MonoBehaviour
 
     private void Start()
     {
-		if (!PlayerPrefs.HasKey("map"))
-		{
-			PlayerPrefs.SetString("map", "Desert");
-		}
 	}
 
     // Update is called once per frame
@@ -67,8 +63,7 @@ public class MenuButton : MonoBehaviour
 			{
 				// do something
 			}
-			// Debug.Log("Caricato mappa " + PlayerPrefs.GetString("map"));
-			SceneManager.LoadScene("Game" + PlayerPrefs.GetString("map"));
+			SceneManager.LoadScene("Game" + PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME));
 		}
 	}
 

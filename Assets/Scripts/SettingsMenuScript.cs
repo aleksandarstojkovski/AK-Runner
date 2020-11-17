@@ -16,12 +16,6 @@ public class SettingsMenuScript : MonoBehaviour
 
     private void Start()
     {
-        //Player default Map
-        if (!PlayerPrefs.HasKey("map"))
-        {
-            PlayerPrefs.SetString("map", "Desert");
-        }
-
         //Resolutions
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -48,7 +42,7 @@ public class SettingsMenuScript : MonoBehaviour
         maps.Add("Test Map");
 
         mapsDropdown.AddOptions(maps);
-        mapsDropdown.value = maps.IndexOf(PlayerPrefs.GetString("map") + " Map");
+        mapsDropdown.value = maps.IndexOf(PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME) + " Map");
     }
 
     public void SetVolume()
@@ -71,6 +65,6 @@ public class SettingsMenuScript : MonoBehaviour
     {
         //Debug.Log(mapsDropdown.GetComponent<Dropdown>().captionText.text);
         //Debug.Log(mapsDropdown.GetComponent<Dropdown>().captionText.text.Split(' ').First<string>());
-        PlayerPrefs.SetString("map", mapsDropdown.GetComponent<Dropdown>().captionText.text.Split(' ').First<string>());
+        PlayerPrefs.SetString(GamePrefs.Keys.CURRENT_MAP_NAME, mapsDropdown.GetComponent<Dropdown>().captionText.text.Split(' ').First<string>());
     }
 }

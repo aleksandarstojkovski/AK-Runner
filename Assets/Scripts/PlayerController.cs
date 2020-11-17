@@ -58,9 +58,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
         groundChecker = GetComponent<Transform>();
-        currentCoins = Mathf.Round(PlayerPrefs.GetFloat("coins", 0));
-        recordScore = Mathf.Round(PlayerPrefs.GetFloat("recordScore", 0));
-        playerMetadata = new PlayerMetadata(currentCoins, currentScore, "Player1");
+        currentCoins = Mathf.Round(PlayerPrefs.GetFloat(GamePrefs.Keys.COINS_AMNT, 0));
+        recordScore = Mathf.Round(PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_MAP_RECORD_SCORE, 0));
+        playerMetadata = new PlayerMetadata(currentCoins, currentScore);
 
         Messenger.Broadcast(GameEvent.PLAY_AND_SCHEDULE_RUNNING_SOUND,MessengerMode.DONT_REQUIRE_LISTENER);
 
@@ -229,10 +229,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Obstacle" && !boost)
         {
             dead = true;
-            if (currentScore > recordScore) {
-                recordScore = Mathf.Round(currentScore);
-                Messenger<float>.Broadcast(GameEvent.NEW_RECORD, recordScore, MessengerMode.DONT_REQUIRE_LISTENER);
-            }
             Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata, MessengerMode.DONT_REQUIRE_LISTENER);
             Messenger.Broadcast(GameEvent.STOP_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         }

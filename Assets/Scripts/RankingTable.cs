@@ -16,10 +16,9 @@ public class RankingTable : MonoBehaviour
     {
         entryContainer = transform.Find("rankingEntryContainer");
         entryTemplate = entryContainer.Find("rankingEntryTemplate");
-
         entryTemplate.gameObject.SetActive(false);
 
-        string jsonString = PlayerPrefs.GetString("ranking");
+        string jsonString = PlayerPrefs.GetString(GamePrefs.Keys.RANKING_JSON,"[]");
         List<PlayerMetadata> rankings = JsonConvert.DeserializeObject<List<PlayerMetadata>>(jsonString) as List<PlayerMetadata>;
 
 

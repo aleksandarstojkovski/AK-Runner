@@ -10,17 +10,16 @@ public class MainMenuScript : MonoBehaviour
 
     public void Start()
     {
-        //currentMoneyText.text = "Coins: " + PlayerPrefs.GetFloat("coins").ToString();
-        if (!PlayerPrefs.HasKey("map"))
+        if (!PlayerPrefs.HasKey(GamePrefs.Keys.CURRENT_MAP_NAME))
         {
-            PlayerPrefs.SetString("map", "Desert");
+            // default map
+            PlayerPrefs.SetString(GamePrefs.Keys.CURRENT_MAP_NAME, GamePrefs.Values.DESERT_MAP);
         }
     }
 
     public void PlayGame()
     {
-        // Debug.Log("Caricato mappa " + PlayerPrefs.GetString("map"));
-        SceneManager.LoadScene("Game" + PlayerPrefs.GetString("map"));
+        SceneManager.LoadScene("Game" + PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME));
     }
 
     public void RetryGame()

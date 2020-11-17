@@ -6,15 +6,13 @@ using UnityEngine.UI;
 public class GameOverText : MonoBehaviour
 {
 
-    // Start is called before the first frame update
     void Start()
     {
         Text gameOverText = GetComponent<Text>();
         gameOverText.fontSize = 150;
-        gameOverText.text = "Your score: " + Mathf.Round(PlayerPrefs.GetFloat("currentScore")) + "\n" + "⋆ Best score: " + Mathf.Round(PlayerPrefs.GetFloat("recordScore")) + " ⋆";
+        gameOverText.text = "Your score: " + PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_SCORE) + "\n" + "⋆ Best score for this map: " + PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_MAP_RECORD_SCORE) + " ⋆";
     }
 
-    // Update is called once per frame
     void Update()
     {
         

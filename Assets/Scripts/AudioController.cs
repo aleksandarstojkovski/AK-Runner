@@ -13,8 +13,23 @@ public class AudioController : MonoBehaviour
     public AudioClip coinAudioClip;
     public AudioSource jumpAndSlideAudioSource;
     public AudioSource backgroundMusicAudioSource;
+    public static AudioController Instance = null;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        // singleton
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+    }
+
     void Start()
     {
         Messenger.AddListener(GameEvent.PAUSE_RUNNING_SOUND, pauseRunning);
@@ -26,8 +41,8 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PLAY_COIN_SOUND, playCoinSound);
         Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
-        backgroundMusicAudioSource.volume = 0.04f;
-        runningAudioSource.volume = 0.10f;
+        backgroundMusicAudioSource.volume = 0.16f;
+        runningAudioSource.volume = 0.30f;
 
         if (!backgroundMusicAudioSource.isPlaying)
         {

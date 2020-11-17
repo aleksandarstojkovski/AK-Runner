@@ -542,7 +542,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -650,7 +650,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2197,6 +2197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1814425580}
   - component: {fileID: 1814425579}
+  - component: {fileID: 1814425581}
   m_Layer: 0
   m_Name: ScoreController
   m_TagString: Untagged
@@ -2219,7 +2220,9 @@ MonoBehaviour:
   currentScoreText: {fileID: 1628432569}
   currentCoinsText: {fileID: 1903853061}
   recordScore: 0
-  initialString: 
+  rankingJsonString: 
+  currentScoreLabelText: 'Score: '
+  coinsLabelText: 'Coins: '
 --- !u!4 &1814425580
 Transform:
   m_ObjectHideFlags: 0
@@ -2234,6 +2237,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814425581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814425578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf22d0ada9679545804f854b34e12a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1901400105 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1120576110, guid: 3c614e9cd35bf468b8d2f1689cc4cca8, type: 3}
