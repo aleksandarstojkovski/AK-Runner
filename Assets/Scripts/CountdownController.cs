@@ -17,6 +17,11 @@ public class CountdownController : MonoBehaviour
 
     IEnumerator CountdownToStart()
     {
+
+        StartCoroutine(waitHalfSec());
+
+        Messenger.Broadcast(GameEvent.PLAY_COUNTDOWN, MessengerMode.DONT_REQUIRE_LISTENER);
+
         while(countdownTime > 0)
         {
             countdownDisplay.text = countdownTime.ToString();
@@ -34,5 +39,9 @@ public class CountdownController : MonoBehaviour
 
         countdownDisplay.gameObject.SetActive(false);
 
+    }
+
+    IEnumerator waitHalfSec() {
+        yield return new WaitForSeconds(0.5f);
     }
 }
