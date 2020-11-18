@@ -11,4 +11,5 @@
     public const string PLAY_JUMP_SOUND = "PLAY_JUMP_SOUND";
     public const string PLAY_SETTINGS_SOUND = "PLAY_SETTINGS_SOUND";
     public const string PLAY_COIN_SOUND = "PLAY_COIN_SOUND";
+    public const string BEGIN_GAME = "BEGIN_GAME";
 }

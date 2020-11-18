@@ -11,11 +11,13 @@ public class PlayerController : MonoBehaviour
 
     public bool jump = false;
     public bool slide = false;
+    public bool run = false;
     public bool left = false;
     public bool right = false;
     private bool isGrounded = true;
     public bool dead = false;
     public bool boost = false;
+    public bool gameStarted = false;
 
     public Animator animator;
     private Rigidbody rigidBody;
@@ -62,14 +64,19 @@ public class PlayerController : MonoBehaviour
         recordScore = Mathf.Round(PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_MAP_RECORD_SCORE, 0));
         playerMetadata = new PlayerMetadata(currentCoins, currentScore);
 
-        Messenger.Broadcast(GameEvent.PLAY_AND_SCHEDULE_RUNNING_SOUND,MessengerMode.DONT_REQUIRE_LISTENER);
-
-        animator.SetBool("isJump", jump);
-        animator.SetBool("isSlide", slide);
-        animator.SetBool("isLeft", left);
-        animator.SetBool("isRight", right);
+        Messenger.AddListener(GameEvent.BEGIN_GAME, beginGame);
 
         targetXPosition = transform.position;
+    }
+
+    void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.BEGIN_GAME,beginGame);
+    }
+    void beginGame() {
+        animator.SetBool("isRun", true);
+        Messenger.Broadcast(GameEvent.PLAY_AND_SCHEDULE_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        gameStarted = true;
     }
 
     void updatePlayerMetadata() {
@@ -193,6 +200,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!gameStarted)
+            return;
 
         updatePlayerMetadata();
 
