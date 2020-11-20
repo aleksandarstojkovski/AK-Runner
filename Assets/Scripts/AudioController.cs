@@ -124,5 +124,20 @@ public class AudioController : MonoBehaviour
         backgroundMusicAudioSource.PlayOneShot(countdownGoAudioClip);
     }
 
+    void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.PAUSE_RUNNING_SOUND, pauseRunning);
+        Messenger.RemoveListener(GameEvent.UNPAUSE_RUNNING_SOUND, unPauseRunning);
+        Messenger.RemoveListener(GameEvent.PLAY_AND_SCHEDULE_RUNNING_SOUND, playAndScheduleRunning);
+        Messenger.RemoveListener(GameEvent.PLAY_SLIDE_SOUND, playSlideSound);
+        Messenger.RemoveListener(GameEvent.PLAY_JUMP_SOUND, playJumpSound);
+        Messenger.RemoveListener(GameEvent.STOP_RUNNING_SOUND, stopRunningSound);
+        Messenger.RemoveListener(GameEvent.PLAY_COIN_SOUND, playCoinSound);
+        Messenger.RemoveListener(GameEvent.PLAY_COUNTDOWN_3, playCountdown3);
+        Messenger.RemoveListener(GameEvent.PLAY_COUNTDOWN_2, playCountdown2);
+        Messenger.RemoveListener(GameEvent.PLAY_COUNTDOWN_1, playCountdown1);
+        Messenger.RemoveListener(GameEvent.PLAY_COUNTDOWN_GO, playCountdownGo);
+        Messenger<AudioClip>.RemoveListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
+    }
 
 }
