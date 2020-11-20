@@ -7,29 +7,33 @@ public class CountdownController : MonoBehaviour
 {
     public int countdownTime;
     public Text countdownDisplay;
-    public PlayerController playerController;
+    List<string> countdownList = new List<string>() { GameEvent.PLAY_COUNTDOWN_1, GameEvent.PLAY_COUNTDOWN_2, GameEvent.PLAY_COUNTDOWN_3 };
 
-    private void Start()
+    IEnumerator Start()
     {
-        playerController = GetComponent<PlayerController>();
+        
+        countdownDisplay.text = "";
+
+        yield return new WaitForSeconds(3f);
+
         StartCoroutine(CountdownToStart());
     }
 
     IEnumerator CountdownToStart()
     {
-
-        StartCoroutine(waitHalfSec());
-
-        Messenger.Broadcast(GameEvent.PLAY_COUNTDOWN, MessengerMode.DONT_REQUIRE_LISTENER);
-
         while(countdownTime > 0)
         {
+
+            Messenger.Broadcast(countdownList[countdownTime-1], MessengerMode.DONT_REQUIRE_LISTENER);
+
             countdownDisplay.text = countdownTime.ToString();
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.1f);
 
             countdownTime--;
         }
+
+        Messenger.Broadcast(GameEvent.PLAY_COUNTDOWN_GO, MessengerMode.DONT_REQUIRE_LISTENER);
 
         countdownDisplay.text = "GO!";
 
@@ -41,7 +45,4 @@ public class CountdownController : MonoBehaviour
 
     }
 
-    IEnumerator waitHalfSec() {
-        yield return new WaitForSeconds(0.5f);
-    }
 }

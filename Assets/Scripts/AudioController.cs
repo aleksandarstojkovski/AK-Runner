@@ -11,7 +11,10 @@ public class AudioController : MonoBehaviour
     public AudioSource runningAudioSource;
     public AudioClip runningAudioClip;
     public AudioClip coinAudioClip;
-    public AudioClip countDownAudioClip;
+    public AudioClip countdown3AudioClip;
+    public AudioClip countdown2AudioClip;
+    public AudioClip countdown1AudioClip;
+    public AudioClip countdownGoAudioClip;
     public AudioSource jumpAndSlideAudioSource;
     public AudioSource backgroundMusicAudioSource;
     public static AudioController Instance = null;
@@ -40,7 +43,10 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PLAY_JUMP_SOUND, playJumpSound);
         Messenger.AddListener(GameEvent.STOP_RUNNING_SOUND, stopRunningSound);
         Messenger.AddListener(GameEvent.PLAY_COIN_SOUND, playCoinSound);
-        Messenger.AddListener(GameEvent.PLAY_COUNTDOWN, playCountdown);
+        Messenger.AddListener(GameEvent.PLAY_COUNTDOWN_3, playCountdown3);
+        Messenger.AddListener(GameEvent.PLAY_COUNTDOWN_2, playCountdown2);
+        Messenger.AddListener(GameEvent.PLAY_COUNTDOWN_1, playCountdown1);
+        Messenger.AddListener(GameEvent.PLAY_COUNTDOWN_GO, playCountdownGo);
         Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
         backgroundMusicAudioSource.volume = 0.16f;
@@ -100,9 +106,23 @@ public class AudioController : MonoBehaviour
         backgroundMusicAudioSource.PlayOneShot(coinAudioClip);
     }
 
-    void playCountdown()
+    void playCountdown3()
     {
-        backgroundMusicAudioSource.PlayOneShot(countDownAudioClip);
+        backgroundMusicAudioSource.PlayOneShot(countdown3AudioClip);
     }
+
+    void playCountdown2()
+    {
+        backgroundMusicAudioSource.PlayOneShot(countdown2AudioClip);
+    }
+    void playCountdown1()
+    {
+        backgroundMusicAudioSource.PlayOneShot(countdown1AudioClip);
+    }
+    void playCountdownGo()
+    {
+        backgroundMusicAudioSource.PlayOneShot(countdownGoAudioClip);
+    }
+
 
 }

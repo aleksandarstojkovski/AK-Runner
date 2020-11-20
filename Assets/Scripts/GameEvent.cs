@@ -12,5 +12,8 @@
     public const string PLAY_SETTINGS_SOUND = "PLAY_SETTINGS_SOUND";
     public const string PLAY_COIN_SOUND = "PLAY_COIN_SOUND";
     public const string BEGIN_GAME = "BEGIN_GAME";
-    public const string PLAY_COUNTDOWN = "PLAY_COUNTDOWN";
+    public const string PLAY_COUNTDOWN_GO = "PLAY_COUNTDOWN_GO";
+    public const string PLAY_COUNTDOWN_3 = "PLAY_COUNTDOWN_3";
+    public const string PLAY_COUNTDOWN_2 = "PLAY_COUNTDOWN_2";
+    public const string PLAY_COUNTDOWN_1 = "PLAY_COUNTDOWN_1";
 }

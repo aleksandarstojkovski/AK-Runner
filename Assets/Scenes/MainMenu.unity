@@ -852,7 +852,10 @@ MonoBehaviour:
   runningAudioSource: {fileID: 535302231}
   runningAudioClip: {fileID: 8300000, guid: 8cfd47c86b81d24488795468995eae2f, type: 3}
   coinAudioClip: {fileID: 8300000, guid: 267de6af862cdbd43a04b8fb67bcd51e, type: 3}
-  countDownAudioClip: {fileID: 8300000, guid: 29b0055b5adb20049ac97c485ed186aa, type: 3}
+  countdown3AudioClip: {fileID: 8300000, guid: e782c0f25a96b7449a1ca1957736dc81, type: 3}
+  countdown2AudioClip: {fileID: 8300000, guid: 88f20a5dc307c2c4fa3d278bf1c16a65, type: 3}
+  countdown1AudioClip: {fileID: 8300000, guid: 3251862711caa324ebb92245e6eebf3e, type: 3}
+  countdownGoAudioClip: {fileID: 8300000, guid: 2f7fe36845f432e4098fbc59e29b7ee5, type: 3}
   jumpAndSlideAudioSource: {fileID: 535302234}
   backgroundMusicAudioSource: {fileID: 535302236}
 --- !u!4 &535302233
