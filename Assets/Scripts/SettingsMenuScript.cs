@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class SettingsMenuScript : MonoBehaviour
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Dropdown resolutionDropdown;
     [SerializeField] Dropdown mapsDropdown;
+    [SerializeField] Toggle fullscreenToggle;
     private Resolution[] resolutions;
     private List<string> maps;
 
@@ -21,7 +23,11 @@ public class SettingsMenuScript : MonoBehaviour
         resolutionDropdown.ClearOptions();
 
         List<string> resOptions = new List<string>();
-        Resolution currentResolution = Screen.currentResolution;
+        Resolution currentResolution = new Resolution();
+        currentResolution.width = PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH);
+        currentResolution.height = PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT);
+        currentResolution.refreshRate = 60;
+        Debug.Log("Risoluzione: " + currentResolution);
 
         foreach(Resolution r in resolutions){
             resOptions.Add(r.width + " x " + r.height + " pixel");
@@ -32,6 +38,19 @@ public class SettingsMenuScript : MonoBehaviour
         resolutionDropdown.AddOptions(resOptions);
         resolutionDropdown.value = resOptions.IndexOf(currentResolution.width + " x " + currentResolution.height + " pixel");
         resolutionDropdown.RefreshShownValue();
+
+        //Fullscreen
+        if (PlayerPrefs.HasKey(GamePrefs.Keys.SCREEN_IS_FULLSCREEN))
+        {
+            int val = PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_IS_FULLSCREEN);
+            bool v = Convert.ToBoolean(val);
+            fullscreenToggle.isOn = v;            
+        }
+        else
+        {
+            fullscreenToggle.isOn = false;
+            SetFullscreen(false);
+        }
 
         //Maps
         mapsDropdown.ClearOptions();
@@ -52,13 +71,21 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void SetFullscreen(bool isFullscreen)
     {
+        PlayerPrefs.SetInt(GamePrefs.Keys.SCREEN_IS_FULLSCREEN, Convert.ToInt32(isFullscreen));
         Screen.fullScreen = isFullscreen;
     }
 
-    public void SetResolution(int resolutionIndex)
+    public void SetResolution()
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.width, Screen.fullScreen);
+        Resolution resolution = resolutions[resolutionDropdown.value];
+        PlayerPrefs.SetInt(GamePrefs.Keys.SCREEN_WIDTH, resolution.width);
+        PlayerPrefs.SetInt(GamePrefs.Keys.SCREEN_HEIGHT, resolution.height);
+
+        Screen.SetResolution(PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH), PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT), fullscreenToggle.isOn);
+
+        Debug.Log("Indice: " + resolutionDropdown.value);
+        Debug.Log("Risoluzione impostata: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH) + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT));
+        Debug.Log("Fullscreen: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_IS_FULLSCREEN));
     }
 
     public void SetMap()

@@ -9,6 +9,9 @@
         public const string RANKING_JSON = "RANKING_JSON";
         public const string CURRENT_MAP_RECORD_SCORE = "CURRENT_MAP_RECORD_SCORE";
         public const string PLAYER_NAME = "PLAYER_NAME";
+        public const string SCREEN_IS_FULLSCREEN = "IS_FULLSCREEN";
+        public const string SCREEN_WIDTH = "SCREEN_WIDTH";
+        public const string SCREEN_HEIGHT = "SCREEN_HEIGHT";
     }
 
     public class Values

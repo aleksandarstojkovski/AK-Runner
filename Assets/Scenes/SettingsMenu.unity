@@ -812,7 +812,7 @@ MonoBehaviour:
       - m_Target: {fileID: 418180840}
         m_TargetAssemblyTypeName: SettingsMenuScript, Assembly-CSharp
         m_MethodName: SetResolution
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1236,6 +1236,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 74feac455e2ec4d43b73de395182f949, type: 2}
   resolutionDropdown: {fileID: 350315355}
   mapsDropdown: {fileID: 638998755}
+  fullscreenToggle: {fileID: 1074670484}
 --- !u!1 &434899493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,6 +2940,7 @@ GameObject:
   - component: {fileID: 1364404985}
   - component: {fileID: 1364404984}
   - component: {fileID: 1364404983}
+  - component: {fileID: 1364404986}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3011,6 +3013,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1364404986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364404982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529726205447ad14d9000c4d4ab41e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1386239000
 GameObject:
   m_ObjectHideFlags: 0

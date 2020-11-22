@@ -707,29 +707,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jump: 0
   slide: 0
+  run: 0
   left: 0
   right: 0
   dead: 0
   boost: 0
+  gameStarted: 0
   animator: {fileID: 0}
   trigger: {fileID: 0}
   Ground:
     serializedVersion: 2
     m_Bits: 256
   groundChecker: {fileID: 642717139}
-  runningAudioSource: {fileID: 699177865}
-  runningAudioClip: {fileID: 8300000, guid: 8cfd47c86b81d24488795468995eae2f, type: 3}
-  jumpAndSlideAudioSource: {fileID: 699177866}
-  jumpAudioClips:
-  - {fileID: 8300000, guid: bf061b5d3f5012d4f87aaa310ed4c6dd, type: 3}
-  - {fileID: 8300000, guid: fc121220bb729084e8e788a08afdb487, type: 3}
-  - {fileID: 8300000, guid: 7da588ea8edc2b14db48d3ee972d1074, type: 3}
-  - {fileID: 8300000, guid: a7f419bfb0dc1e94abe2eb83d03f1ee5, type: 3}
-  - {fileID: 8300000, guid: 8d4b4003ee794f04eaf0912465754032, type: 3}
-  - {fileID: 8300000, guid: 4a98cd59d68499f4c91f91d09783c830, type: 3}
-  - {fileID: 8300000, guid: c1640eea45a943643837c5f21a8370f2, type: 3}
-  slideAudioClips:
-  - {fileID: 8300000, guid: e30106a8e5631114d818a1f33bad8816, type: 3}
   jumpHeight: 1
   leftRightForce: 2
   groundDistance: 0.2
@@ -742,6 +731,8 @@ MonoBehaviour:
   boostMultiplier: 1
   boostMultiplierDefault: 1
   coinValue: 1
+  horizontalSpeed: 5.5
+  leftRightMovement: 1
 --- !u!65 &699177863
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1056,6 +1047,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1142,6 +1134,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 699177859}
   offset: {x: 0, y: 0, z: 0}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529726205447ad14d9000c4d4ab41e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1038002782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,7 +1712,9 @@ MonoBehaviour:
   currentScoreText: {fileID: 1536073420}
   currentCoinsText: {fileID: 583607088}
   recordScore: 0
-  initialString: 
+  rankingJsonString: 
+  currentScoreLabelText: 'Score: '
+  coinsLabelText: 'Coins: '
 --- !u!1 &2046417070 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4817132848101939197, guid: b1440fab934a57845951f53a84716345, type: 3}

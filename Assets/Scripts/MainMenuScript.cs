@@ -24,7 +24,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void RetryGame()
     {
-        SceneManager.LoadScene("GameDesert");
+        SceneManager.LoadScene("Game" + PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME));
     }
 
     public void GoToSettingsMenu()
