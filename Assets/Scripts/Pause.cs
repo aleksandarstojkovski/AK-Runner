@@ -3,33 +3,37 @@ using System.Collections;
 
 public class Pause : MonoBehaviour
 {
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] public static bool isPaused;
 
-    bool Paused = false;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Paused == true)
-            {
+            isPaused = !isPaused;
+        }
 
-                Paused = false;
-            }
-            else
-            {
-
-                Paused = true;
-            }
+        if (isPaused)
+        {
+            ActivateMenu();
+        } else
+        {
+            DeactivateMenu();
         }
     }
-    public void Resume()
-    {
 
+    void ActivateMenu()
+    {
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+        pauseMenuUI.SetActive(true);
+    }
+    public void DeactivateMenu()
+    {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        pauseMenuUI.SetActive(false);
+        isPaused = false;
     }
 
 }

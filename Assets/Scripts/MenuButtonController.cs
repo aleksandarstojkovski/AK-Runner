@@ -7,10 +7,8 @@ public class MenuButtonController : MonoBehaviour {
 	// Use this for initialization
 	public int index;
 	public int maxIndex;
-	public AudioSource audioSource;
 
 	void Start () {
-		audioSource = GetComponent<AudioSource>();
 		index = 0;
 	}
 	
