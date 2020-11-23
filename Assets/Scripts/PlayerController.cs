@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public bool dead = false;
     public bool boost = false;
     public bool gameStarted = false;
+    public bool gamePaused = false;
 
     public Animator animator;
     private Rigidbody rigidBody;
@@ -65,14 +66,29 @@ public class PlayerController : MonoBehaviour
         playerMetadata = new PlayerMetadata(currentCoins, currentScore);
 
         Messenger.AddListener(GameEvent.BEGIN_GAME, beginGame);
+        Messenger.AddListener(GameEvent.UNPAUSE, UnPauseGame);
+        Messenger.AddListener(GameEvent.PAUSE, PauseGame);
 
         targetXPosition = transform.position;
     }
 
+    void PauseGame() {
+        gamePaused = true;
+    }
+
+    void UnPauseGame()
+    {
+        gamePaused = false;
+    }
+
+
     void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.BEGIN_GAME,beginGame);
+        Messenger.RemoveListener(GameEvent.UNPAUSE, UnPauseGame);
+        Messenger.RemoveListener(GameEvent.PAUSE, PauseGame);
     }
+
     void beginGame() {
         animator.SetBool("isRun", true);
         Messenger.Broadcast(GameEvent.PLAY_AND_SCHEDULE_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
@@ -99,9 +115,10 @@ public class PlayerController : MonoBehaviour
 
     void checkDead()
     {
-        // Debug.Log("controllo se morto");
         if (dead == true)
         {
+            Messenger.Broadcast(GameEvent.STOP_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+            Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata, MessengerMode.DONT_REQUIRE_LISTENER);
             SceneManager.LoadScene("GameOverMenu");
         }
     }
@@ -201,7 +218,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if (!gameStarted)
+        if (!gameStarted || gamePaused)
             return;
 
         updatePlayerMetadata();
@@ -218,9 +235,6 @@ public class PlayerController : MonoBehaviour
 
         processInput();
 
-        // TODO: remove
-        speed += speedIncrement*Time.deltaTime;
-        animator.speed += animationSpeedIncrement*Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider other) {
@@ -239,8 +253,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Obstacle" && !boost)
         {
             dead = true;
-            Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata, MessengerMode.DONT_REQUIRE_LISTENER);
-            Messenger.Broadcast(GameEvent.STOP_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         }
 
         if (other.gameObject.tag == "Boost")

@@ -16,4 +16,6 @@
     public const string PLAY_COUNTDOWN_3 = "PLAY_COUNTDOWN_3";
     public const string PLAY_COUNTDOWN_2 = "PLAY_COUNTDOWN_2";
     public const string PLAY_COUNTDOWN_1 = "PLAY_COUNTDOWN_1";
+    public const string PAUSE = "PAUSE";
+    public const string UNPAUSE = "UNPAUSE";
 }
