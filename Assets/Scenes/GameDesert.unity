@@ -1288,11 +1288,7 @@ MonoBehaviour:
   - {fileID: 6106286646520668187, guid: 5ce3d2ce1f19d814b8efe6b6b01a6377, type: 3}
   - {fileID: 4434515252805529936, guid: 66521aff517694c4d9d65b5b28341992, type: 3}
   - {fileID: 8603733524745503140, guid: cee30b09e83057f4f831fede1ad955f3, type: 3}
-  - {fileID: 6715353133434746020, guid: 26672f37f253fe543a578ec6431806e8, type: 3}
-  - {fileID: 8326223894825417583, guid: 755cbb06e2078d646b573366dc2eefce, type: 3}
-  - {fileID: 2780977533469450240, guid: 71f4ef793b573f44c8b8df615e162380, type: 3}
-  - {fileID: 5155767067115572917, guid: a53c077e8d19a20479bac1e650ee553d, type: 3}
-  - {fileID: 4434515252805529936, guid: 66521aff517694c4d9d65b5b28341992, type: 3}
+  - {fileID: 6827677064486346819, guid: 5af4cdb70e529ee4fae7db4f996831c5, type: 3}
   BackArea: 166
   PrefabsOnScreen: 4
   LastPrefab: 0
@@ -1510,6 +1506,10 @@ PrefabInstance:
     - target: {fileID: 6715353133434746020, guid: 26672f37f253fe543a578ec6431806e8, type: 3}
       propertyPath: m_Name
       value: DesertMap1_coins_none
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715353133434746020, guid: 26672f37f253fe543a578ec6431806e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6715353133434746021, guid: 26672f37f253fe543a578ec6431806e8, type: 3}
       propertyPath: m_LocalPosition.x

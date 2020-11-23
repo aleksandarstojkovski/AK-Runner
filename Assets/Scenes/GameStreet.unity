@@ -575,6 +575,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CountdownCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7024340331880405646, guid: ec99a80430b49034cb2e1ac4827e989d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec99a80430b49034cb2e1ac4827e989d, type: 3}
 --- !u!1 &632173308
@@ -1196,7 +1200,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1261631982 stripped
 RectTransform:
@@ -1264,6 +1268,7 @@ MonoBehaviour:
   - {fileID: 4891640467051366747, guid: 5d8d44fae7dd9c34480a2df4b20abc90, type: 3}
   - {fileID: 9097063581702756030, guid: 2bd23cf586515c0419bf779eb26e13a2, type: 3}
   - {fileID: 3463454642825711374, guid: 955a11d6646da29479afa49bb810a6e7, type: 3}
+  - {fileID: 2533355197924730048, guid: 85b9f5edddc45e245b4261b2f78b9ad2, type: 3}
   BackArea: 172
   PrefabsOnScreen: 4
   LastPrefab: 0
@@ -1381,7 +1386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 61102442765113915, guid: 24ae85f163cefe544b8c9050e385de13, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 61102442765113915, guid: 24ae85f163cefe544b8c9050e385de13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1398,6 +1403,10 @@ PrefabInstance:
     - target: {fileID: 628535677733672723, guid: 24ae85f163cefe544b8c9050e385de13, type: 3}
       propertyPath: m_Name
       value: StreetMap1_coins_none
+      objectReference: {fileID: 0}
+    - target: {fileID: 628535677733672723, guid: 24ae85f163cefe544b8c9050e385de13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24ae85f163cefe544b8c9050e385de13, type: 3}
