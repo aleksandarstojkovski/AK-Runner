@@ -52,7 +52,6 @@ public class PauseMenuScript : MonoBehaviour
 				// do nothing
 			}
 			Time.timeScale = 1;
-			AudioListener.pause = false;
 			pauseMenuUI.SetActive(false);
 			Pause.isPaused = false;
 		}
@@ -67,7 +66,6 @@ public class PauseMenuScript : MonoBehaviour
 				// do nothing
 			}
 			Time.timeScale = 1;
-			AudioListener.pause = false;
 			pauseMenuUI.SetActive(false);
 			Pause.isPaused = false;
 			SceneManager.LoadScene("MainMenu");

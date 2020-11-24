@@ -26,14 +26,14 @@ public class Pause : MonoBehaviour
     {
         Messenger.Broadcast(GameEvent.PAUSE);
         Time.timeScale = 0;
-        AudioListener.pause = true;
         pauseMenuUI.SetActive(true);
+        isPaused = true;
     }
+
     public void DeactivateMenu()
     {
         Messenger.Broadcast(GameEvent.UNPAUSE);
         Time.timeScale = 1;
-        AudioListener.pause = false;
         pauseMenuUI.SetActive(false);
         isPaused = false;
     }

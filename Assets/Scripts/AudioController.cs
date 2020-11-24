@@ -47,6 +47,8 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PLAY_COUNTDOWN_2, playCountdown2);
         Messenger.AddListener(GameEvent.PLAY_COUNTDOWN_1, playCountdown1);
         Messenger.AddListener(GameEvent.PLAY_COUNTDOWN_GO, playCountdownGo);
+        Messenger.AddListener(GameEvent.PAUSE, pause);
+        Messenger.AddListener(GameEvent.UNPAUSE, unPause);
         Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
         backgroundMusicAudioSource.volume = 0.16f;
@@ -122,6 +124,16 @@ public class AudioController : MonoBehaviour
     void playCountdownGo()
     {
         backgroundMusicAudioSource.PlayOneShot(countdownGoAudioClip);
+    }
+
+    void pause() {
+        runningAudioSource.enabled = false;
+        jumpAndSlideAudioSource.enabled = false;
+    }
+
+    void unPause() {
+        runningAudioSource.enabled = true;
+        jumpAndSlideAudioSource.enabled = true;
     }
 
     void OnDestroy()
