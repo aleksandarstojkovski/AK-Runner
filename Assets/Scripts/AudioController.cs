@@ -18,6 +18,8 @@ public class AudioController : MonoBehaviour
     public AudioSource jumpAndSlideAudioSource;
     public AudioSource backgroundMusicAudioSource;
     public static AudioController Instance = null;
+    float backgroundMusicAudioSourceVolume = 0.16f;
+    float runningAudioSourceVolume = 0.30f;
 
     void Awake()
     {
@@ -51,8 +53,8 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.UNPAUSE, unPause);
         Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
-        backgroundMusicAudioSource.volume = 0.16f;
-        runningAudioSource.volume = 0.30f;
+        backgroundMusicAudioSource.volume = backgroundMusicAudioSourceVolume;
+        runningAudioSource.volume = runningAudioSourceVolume;
 
         if (!backgroundMusicAudioSource.isPlaying)
         {
@@ -149,6 +151,8 @@ public class AudioController : MonoBehaviour
         Messenger.RemoveListener(GameEvent.PLAY_COUNTDOWN_2, playCountdown2);
         Messenger.RemoveListener(GameEvent.PLAY_COUNTDOWN_1, playCountdown1);
         Messenger.RemoveListener(GameEvent.PLAY_COUNTDOWN_GO, playCountdownGo);
+        Messenger.RemoveListener(GameEvent.PAUSE, pause);
+        Messenger.RemoveListener(GameEvent.UNPAUSE, unPause);
         Messenger<AudioClip>.RemoveListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
     }
 

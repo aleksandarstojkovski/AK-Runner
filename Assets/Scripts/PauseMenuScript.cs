@@ -9,8 +9,12 @@ public class PauseMenuScript : MonoBehaviour
 	[SerializeField] AnimatorFunctions animatorFunctions;
 	[SerializeField] MenuButton menuButton;
 	[SerializeField] private GameObject pauseMenuUI;
-
 	[SerializeField] int thisIndex;
+
+	void Start()
+	{
+		animatorFunctions.disableOnce = false;
+	}
 
 	// Update is called once per frame
 	void Update()
@@ -27,7 +31,6 @@ public class PauseMenuScript : MonoBehaviour
 			{
 				animator.SetBool("pressed", false);
 				animator.SetBool("selected", false);
-				animatorFunctions.disableOnce = true;
 			}
 		}
 		else
@@ -54,6 +57,7 @@ public class PauseMenuScript : MonoBehaviour
 			Time.timeScale = 1;
 			pauseMenuUI.SetActive(false);
 			Pause.isPaused = false;
+			Messenger.Broadcast(GameEvent.UNPAUSE);
 		}
 	}
 
@@ -66,8 +70,6 @@ public class PauseMenuScript : MonoBehaviour
 				// do nothing
 			}
 			Time.timeScale = 1;
-			pauseMenuUI.SetActive(false);
-			Pause.isPaused = false;
 			SceneManager.LoadScene("MainMenu");
 		}
 	}

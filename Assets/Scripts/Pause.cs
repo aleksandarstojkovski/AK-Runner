@@ -10,7 +10,16 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (isPaused)
+            {
+                Messenger.Broadcast(GameEvent.UNPAUSE);
+            } else
+            {
+                Messenger.Broadcast(GameEvent.PAUSE);
+            }
+
             isPaused = !isPaused;
+
         }
 
         if (isPaused)
@@ -20,11 +29,11 @@ public class Pause : MonoBehaviour
         {
             DeactivateMenu();
         }
+
     }
 
     void ActivateMenu()
     {
-        Messenger.Broadcast(GameEvent.PAUSE);
         Time.timeScale = 0;
         pauseMenuUI.SetActive(true);
         isPaused = true;
@@ -32,7 +41,6 @@ public class Pause : MonoBehaviour
 
     public void DeactivateMenu()
     {
-        Messenger.Broadcast(GameEvent.UNPAUSE);
         Time.timeScale = 1;
         pauseMenuUI.SetActive(false);
         isPaused = false;

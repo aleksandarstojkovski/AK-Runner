@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
     void UnPauseGame()
     {
         gamePaused = false;
+        if (gameStarted)
+            Messenger.Broadcast(GameEvent.PLAY_AND_SCHEDULE_RUNNING_SOUND);
     }
 
 
