@@ -92,6 +92,7 @@ public class RankingTable : MonoBehaviour
             entryTransform.Find("posText").GetComponent<Text>().color = Color.green;
             entryTransform.Find("scoreText").GetComponent<Text>().color = Color.green;
             entryTransform.Find("nameText").GetComponent<Text>().color = Color.green;
+            entryTransform.Find("mapText").GetComponent<Text>().color = Color.green;
         }
 
         // Set tropy
