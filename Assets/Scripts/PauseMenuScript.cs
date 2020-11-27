@@ -46,6 +46,13 @@ public class PauseMenuScript : MonoBehaviour
 		checkQuitButton();
 	}
 
+	void unPause()
+	{
+		Time.timeScale = 1;
+		pauseMenuUI.SetActive(false);
+		Pause.isPaused = false;
+	}
+
 	void checkResumeButton()
 	{
 		if (menuButton.GetComponentInChildren<Text>().text.Contains("resume"))
@@ -54,9 +61,7 @@ public class PauseMenuScript : MonoBehaviour
 			{
 				// do nothing
 			}
-			Time.timeScale = 1;
-			pauseMenuUI.SetActive(false);
-			Pause.isPaused = false;
+			unPause();
 			Messenger.Broadcast(GameEvent.UNPAUSE);
 		}
 	}
@@ -69,7 +74,7 @@ public class PauseMenuScript : MonoBehaviour
 			{
 				// do nothing
 			}
-			Time.timeScale = 1;
+			unPause();
 			SceneManager.LoadScene("MainMenu");
 		}
 	}
