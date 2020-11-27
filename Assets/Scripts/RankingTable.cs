@@ -19,7 +19,7 @@ public class RankingTable : MonoBehaviour
         entryTemplate.gameObject.SetActive(false);
 
         string jsonString = PlayerPrefs.GetString(GamePrefs.Keys.RANKING_JSON,"[]");
-        List<PlayerMetadata> rankings = JsonConvert.DeserializeObject<List<PlayerMetadata>>(jsonString) as List<PlayerMetadata>;
+        List <PlayerMetadata> rankings = JsonConvert.DeserializeObject<List<PlayerMetadata>>(jsonString) as List<PlayerMetadata>;
 
 
         // Sort entry list by Score
@@ -37,8 +37,11 @@ public class RankingTable : MonoBehaviour
             }
         }
 
-        // only 10 best scores
-        rankings = rankings.Take(8).ToList();
+        // only current map rankings
+        rankings = rankings.Where(item => item.map == PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME)).ToList();
+
+        // only 8 best scores
+        rankings = rankings.Take(5).ToList();
 
         playerMetadataTransformList = new List<Transform>();
 
@@ -77,9 +80,6 @@ public class RankingTable : MonoBehaviour
 
         string name = playerMetadata.name;
         entryTransform.Find("nameText").GetComponent<Text>().text = name;
-
-        // Set background visible odds and evens, easier to read
-        // entryTransform.Find("background").gameObject.SetActive(rank % 2 == 1);
 
         // Highlight First
         if (rank == 1)
