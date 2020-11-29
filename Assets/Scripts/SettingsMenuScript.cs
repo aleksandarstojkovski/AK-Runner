@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -62,11 +61,22 @@ public class SettingsMenuScript : MonoBehaviour
 
         mapsDropdown.AddOptions(maps);
         mapsDropdown.value = maps.IndexOf(PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME) + " Map");
+
+        //Volume
+        if (PlayerPrefs.HasKey(GamePrefs.Keys.CURRENT_GAME_VOLUME))
+        {
+            volumeScrollbar.GetComponent<Scrollbar>().value = PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME);
+        } else
+        {
+            PlayerPrefs.SetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME, 1.0f);
+        }
     }
 
     public void SetVolume()
     {
-        audioMixer.SetFloat("volume", volumeScrollbar.GetComponent<Scrollbar>().value);
+        //audioMixer.SetFloat("volume", volumeScrollbar.GetComponent<Scrollbar>().value);
+        AudioListener.volume = volumeScrollbar.GetComponent<Scrollbar>().value;
+        PlayerPrefs.SetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME, volumeScrollbar.GetComponent<Scrollbar>().value);
     }
 
     public void SetFullscreen(bool isFullscreen)
