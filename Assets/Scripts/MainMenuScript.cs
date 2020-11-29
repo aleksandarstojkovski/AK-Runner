@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour
 {
-    public Text currentMoneyText;
-
     public void Start()
     {
         if (!PlayerPrefs.HasKey(GamePrefs.Keys.CURRENT_MAP_NAME))
@@ -34,7 +32,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("NewMainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void GoToGameOverMenu()

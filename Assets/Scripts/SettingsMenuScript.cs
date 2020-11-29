@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class SettingsMenuScript : MonoBehaviour
     [SerializeField] Dropdown resolutionDropdown;
     [SerializeField] Dropdown mapsDropdown;
     [SerializeField] Toggle fullscreenToggle;
+    [SerializeField] InputField playerName;
     private Resolution[] resolutions;
     private List<string> maps;
 
@@ -70,6 +72,16 @@ public class SettingsMenuScript : MonoBehaviour
         {
             PlayerPrefs.SetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME, 1.0f);
         }
+
+        //Player name
+        if (PlayerPrefs.HasKey(GamePrefs.Keys.PLAYER_NAME))
+        {
+            playerName.placeholder.GetComponent<Text>().text = PlayerPrefs.GetString(GamePrefs.Keys.PLAYER_NAME);
+        } else
+        {
+            PlayerPrefs.SetString(GamePrefs.Keys.PLAYER_NAME, "UNKNOWN");
+            playerName.placeholder.GetComponent<Text>().text = PlayerPrefs.GetString(GamePrefs.Keys.PLAYER_NAME);
+        }
     }
 
     public void SetVolume()
@@ -104,4 +116,16 @@ public class SettingsMenuScript : MonoBehaviour
         //Debug.Log(mapsDropdown.GetComponent<Dropdown>().captionText.text.Split(' ').First<string>());
         PlayerPrefs.SetString(GamePrefs.Keys.CURRENT_MAP_NAME, mapsDropdown.GetComponent<Dropdown>().captionText.text.Split(' ').First<string>());
     }
+
+    public void SetPlayerName()
+    {
+        PlayerPrefs.SetString(GamePrefs.Keys.PLAYER_NAME, playerName.text);
+    }
+
+    public void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        EditorUtility.DisplayDialog("PlayerPrefs reset", "All the player preferences is deleted", "OK");
+    }
+
 }
