@@ -15,6 +15,7 @@ public class RankingTable : MonoBehaviour
 
     private void Awake()
     {
+
         entryContainer = transform.Find("rankingEntryContainer");
         entryTemplate = entryContainer.Find("rankingEntryTemplate");
         entryTemplate.gameObject.SetActive(false);

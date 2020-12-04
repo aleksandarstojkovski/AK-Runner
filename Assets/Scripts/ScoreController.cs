@@ -71,6 +71,8 @@ public class ScoreController : MonoBehaviour
 
     void ReloadScore()
     {
+        ranking.Clear();
+        rankingJsonString = "";
         currentScoreText.text = currentScoreLabelText + PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_SCORE, 0);
         currentCoinsText.text = coinsLabelText + PlayerPrefs.GetFloat(GamePrefs.Keys.COINS_AMNT, 0);
     }
