@@ -52,6 +52,7 @@ public class ScoreController : MonoBehaviour
 
         Messenger<PlayerMetadata>.AddListener(GameEvent.UPDATE_METADATA, UpdateStatusBar);
         Messenger<PlayerMetadata>.AddListener(GameEvent.STORE_RANKING, StoreRanking);
+        Messenger.AddListener(GameEvent.RESET_ALL_PREFERENCES, ReloadScore);
 
         rankingJsonString = PlayerPrefs.GetString(GamePrefs.Keys.RANKING_JSON,"[]");
 
@@ -66,6 +67,12 @@ public class ScoreController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void ReloadScore()
+    {
+        currentScoreText.text = currentScoreLabelText + PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_SCORE, 0);
+        currentCoinsText.text = coinsLabelText + PlayerPrefs.GetFloat(GamePrefs.Keys.COINS_AMNT, 0);
     }
 
     void UpdateStatusBar(PlayerMetadata playerMetadata) {

@@ -125,7 +125,7 @@ public class SettingsMenuScript : MonoBehaviour
     public void ResetPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
-        EditorUtility.DisplayDialog("PlayerPrefs reset", "All the player preferences is deleted", "OK");
+        Messenger.Broadcast(GameEvent.RESET_ALL_PREFERENCES);
     }
 
 }

@@ -18,4 +18,6 @@
     public const string PLAY_COUNTDOWN_1 = "PLAY_COUNTDOWN_1";
     public const string PAUSE = "PAUSE";
     public const string UNPAUSE = "UNPAUSE";
+    public const string RESET_ALL_PREFERENCES = "RESET_ALL_PREFERENCES";
+
 }
