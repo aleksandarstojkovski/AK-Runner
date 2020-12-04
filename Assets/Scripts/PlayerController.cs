@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask Ground;
     public Transform groundChecker;
     public PlayerMetadata playerMetadata;
+    public GameObject fire;
     Vector3 targetXPosition;
 
     public float jumpHeight = 1f;
@@ -268,9 +269,11 @@ public class PlayerController : MonoBehaviour
     IEnumerator Boost()
     {
         boost = true;
+        fire.SetActive(true);
         boostMultiplier *= 5;
         yield return new WaitForSeconds(5);
         boostMultiplier = boostMultiplierDefault;
+        fire.SetActive(false);
         // wait another 1s with normal speed, so player can resume normal game
         yield return new WaitForSeconds(1);
         boost = false;
