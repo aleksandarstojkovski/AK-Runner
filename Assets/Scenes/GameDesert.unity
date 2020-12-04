@@ -1446,7 +1446,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 996428029}
         m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: DeactivateMenu
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1687,9 +1687,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 996428028}
-        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: GoToMainMenu
+      - m_Target: {fileID: 996428029}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
@@ -44,6 +45,18 @@ public class Pause : MonoBehaviour
         Time.timeScale = 1;
         pauseMenuUI.SetActive(false);
         isPaused = false;
+    }
+
+    public void Resume()
+    {
+        DeactivateMenu();
+        Messenger.Broadcast(GameEvent.UNPAUSE);
+    }
+
+    public void Quit()
+    {
+        DeactivateMenu();
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
