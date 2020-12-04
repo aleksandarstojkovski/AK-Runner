@@ -13,6 +13,12 @@ public class MainMenuScript : MonoBehaviour
             // default map
             PlayerPrefs.SetString(GamePrefs.Keys.CURRENT_MAP_NAME, GamePrefs.Values.DESERT_MAP);
         }
+
+        //Volume
+        if (PlayerPrefs.HasKey(GamePrefs.Keys.CURRENT_GAME_VOLUME))
+        {
+            AudioListener.volume = PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME);
+        }
     }
 
     public void PlayGame()
