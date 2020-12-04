@@ -17,8 +17,11 @@ public class GameOverText : MonoBehaviour
         gameOverText.fontSize = 150;
         gameOverText.text = "Your score: " + currentScore + "\n" + "⋆ Best score for this map: " + recordScoreForCurrentMap + " ⋆";
 
-        if (currentScore == recordScoreForCurrentMap) {
+        if (currentScore.Equals(recordScoreForCurrentMap)) {
             fireworks.SetActive(true);
+        } else
+        {
+            fireworks.SetActive(false);
         }
     }
 
