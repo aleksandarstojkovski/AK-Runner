@@ -1362,7 +1362,11 @@ MonoBehaviour:
   countdown2AudioClip: {fileID: 8300000, guid: 88f20a5dc307c2c4fa3d278bf1c16a65, type: 3}
   countdown1AudioClip: {fileID: 8300000, guid: 3251862711caa324ebb92245e6eebf3e, type: 3}
   countdownGoAudioClip: {fileID: 8300000, guid: 2f7fe36845f432e4098fbc59e29b7ee5, type: 3}
-  collisionClip: {fileID: 8300000, guid: 5e13637fd29c5dd4dbc1cfe57a4242b3, type: 3}
+  collisionClip:
+  - {fileID: 8300000, guid: 5e13637fd29c5dd4dbc1cfe57a4242b3, type: 3}
+  - {fileID: 8300000, guid: 5d71e16b1000f2f4fa151cab7308260d, type: 3}
+  - {fileID: 8300000, guid: 90809059551e60047b651c872a75c084, type: 3}
+  - {fileID: 8300000, guid: 01aea4b8f9f38dc48ae7d7bb87ed46e1, type: 3}
   jumpAndSlideAudioSource: {fileID: 535302234}
   backgroundMusicAudioSource: {fileID: 535302236}
 --- !u!4 &535302233
