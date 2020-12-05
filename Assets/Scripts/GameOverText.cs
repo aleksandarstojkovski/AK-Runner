@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class GameOverText : MonoBehaviour
 {
-
+    public Text gameOverTitle;
+    public Text gameOverText;
     public GameObject fireworks;
 
     void Start()
     {
-        Text gameOverText = GetComponent<Text>();
         float currentScore = PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_SCORE);
         float recordScoreForCurrentMap = PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_MAP_RECORD_SCORE);
         
@@ -19,9 +19,11 @@ public class GameOverText : MonoBehaviour
 
         if (currentScore.Equals(recordScoreForCurrentMap)) {
             fireworks.SetActive(true);
+            gameOverTitle.text = "new record!!";
         } else
         {
             fireworks.SetActive(false);
+            gameOverTitle.text = "game over :(";
         }
     }
 

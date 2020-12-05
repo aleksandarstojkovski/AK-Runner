@@ -19,5 +19,5 @@
     public const string PAUSE = "PAUSE";
     public const string UNPAUSE = "UNPAUSE";
     public const string RESET_ALL_PREFERENCES = "RESET_ALL_PREFERENCES";
-
+    public const string PLAY_COLLISION_OBJECT = "PLAY_COLLISION_OBJECT";
 }

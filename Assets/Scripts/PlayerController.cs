@@ -120,6 +120,8 @@ public class PlayerController : MonoBehaviour
     {
         if (dead == true)
         {
+            Messenger.Broadcast(GameEvent.PLAY_COLLISION_OBJECT, MessengerMode.DONT_REQUIRE_LISTENER);
+            // wait
             Messenger.Broadcast(GameEvent.STOP_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
             Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata, MessengerMode.DONT_REQUIRE_LISTENER);
             SceneManager.LoadScene("GameOverMenu");
@@ -278,5 +280,4 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1);
         boost = false;
     }
-
 }

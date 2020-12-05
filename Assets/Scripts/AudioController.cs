@@ -15,6 +15,7 @@ public class AudioController : MonoBehaviour
     public AudioClip countdown2AudioClip;
     public AudioClip countdown1AudioClip;
     public AudioClip countdownGoAudioClip;
+    public AudioClip collisionClip;
     public AudioSource jumpAndSlideAudioSource;
     public AudioSource backgroundMusicAudioSource;
     public static AudioController Instance = null;
@@ -51,6 +52,7 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PLAY_COUNTDOWN_GO, playCountdownGo);
         Messenger.AddListener(GameEvent.PAUSE, pause);
         Messenger.AddListener(GameEvent.UNPAUSE, unPause);
+        Messenger.AddListener(GameEvent.PLAY_COLLISION_OBJECT, playCollision);
         Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
         backgroundMusicAudioSource.volume = backgroundMusicAudioSourceVolume;
@@ -156,4 +158,8 @@ public class AudioController : MonoBehaviour
         Messenger<AudioClip>.RemoveListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
     }
 
+    void playCollision()
+    {
+        backgroundMusicAudioSource.PlayOneShot(collisionClip);
+    }
 }
