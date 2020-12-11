@@ -898,7 +898,7 @@ MonoBehaviour:
   boostAbilityCounter: {fileID: 1018470412}
   jumpHeight: 1
   leftRightForce: 2
-  groundDistance: 0.2
+  groundDistance: 0.1
   speed: 8
   speedIncrement: 0.2
   animationSpeedIncrement: 0.007

@@ -73,7 +73,10 @@ public class RoadSpawner : MonoBehaviour
 		}
 
 		LastPrefab = randomIndex;
-		return 20;
-		//return randomIndex;
+		
+		// test boost coin
+		// return 20;
+
+		return randomIndex;
 	}
 }
