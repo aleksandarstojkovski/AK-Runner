@@ -19,11 +19,12 @@ public class GameOverText : MonoBehaviour
 
         if (currentScore.Equals(recordScoreForCurrentMap)) {
             fireworks.SetActive(true);
-            gameOverTitle.text = "new record!!";
+            Messenger.Broadcast(GameEvent.PLAY_FIREWORKS, MessengerMode.DONT_REQUIRE_LISTENER);
+            gameOverTitle.text = "New Record";
         } else
         {
             fireworks.SetActive(false);
-            gameOverTitle.text = "game over :(";
+            gameOverTitle.text = "Game Over";
         }
     }
 

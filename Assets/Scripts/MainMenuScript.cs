@@ -23,6 +23,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayGame()
     {
+        Messenger.Broadcast(GameEvent.STOP_FIREWORKS, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("Game" + PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME));
     }
 
@@ -38,6 +39,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        Messenger.Broadcast(GameEvent.STOP_FIREWORKS, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("MainMenu");
     }
 

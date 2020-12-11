@@ -18,6 +18,7 @@ public class AudioController : MonoBehaviour
     public AudioClip[] collisionClip;
     public AudioSource jumpAndSlideAudioSource;
     public AudioSource backgroundMusicAudioSource;
+    public AudioSource fireworksAudioSource;
     public static AudioController Instance = null;
     float backgroundMusicAudioSourceVolume = 0.16f;
     float runningAudioSourceVolume = 0.30f;
@@ -53,6 +54,8 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PAUSE, pause);
         Messenger.AddListener(GameEvent.UNPAUSE, unPause);
         Messenger.AddListener(GameEvent.PLAY_COLLISION_OBJECT, playCollision);
+        Messenger.AddListener(GameEvent.PLAY_FIREWORKS, playFireworks);
+        Messenger.AddListener(GameEvent.STOP_FIREWORKS, stopFireworks);
         Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
         backgroundMusicAudioSource.volume = backgroundMusicAudioSourceVolume;
@@ -156,11 +159,23 @@ public class AudioController : MonoBehaviour
         Messenger.RemoveListener(GameEvent.PAUSE, pause);
         Messenger.RemoveListener(GameEvent.UNPAUSE, unPause);
         Messenger.RemoveListener(GameEvent.PLAY_COLLISION_OBJECT, playCollision);
+        Messenger.RemoveListener(GameEvent.PLAY_FIREWORKS, playFireworks);
+        Messenger.RemoveListener(GameEvent.STOP_FIREWORKS, stopFireworks);
         Messenger<AudioClip>.RemoveListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
     }
 
     void playCollision()
     {
         backgroundMusicAudioSource.PlayOneShot(collisionClip[Random.Range(0, collisionClip.Length)]);
+    }
+
+    void playFireworks()
+    {
+        fireworksAudioSource.PlayOneShot(fireworksAudioSource.clip);
+    }
+
+    void stopFireworks()
+    {
+        fireworksAudioSource.Stop();
     }
 }

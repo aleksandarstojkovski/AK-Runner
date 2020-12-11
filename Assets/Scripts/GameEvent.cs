@@ -20,4 +20,6 @@
     public const string UNPAUSE = "UNPAUSE";
     public const string RESET_ALL_PREFERENCES = "RESET_ALL_PREFERENCES";
     public const string PLAY_COLLISION_OBJECT = "PLAY_COLLISION_OBJECT";
+    public const string PLAY_FIREWORKS = "PLAY_FIREWORKS";
+    public const string STOP_FIREWORKS = "STOP_FIREWORKS";
 }
