@@ -9,7 +9,7 @@ public class AnimatorFunctions : MonoBehaviour
 
 	void PlaySound(AudioClip whichSound){
 		if(!disableOnce){
-			Messenger<AudioClip>.Broadcast(GameEvent.PLAY_SETTINGS_SOUND,whichSound,MessengerMode.DONT_REQUIRE_LISTENER);
+			Messenger<AudioClip>.Broadcast(GameEvent.PLAY_BUTTON_SOUND,whichSound,MessengerMode.DONT_REQUIRE_LISTENER);
 		}else{
 			disableOnce = false;
 		}

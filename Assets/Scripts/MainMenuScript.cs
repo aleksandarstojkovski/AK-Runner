@@ -24,44 +24,44 @@ public class MainMenuScript : MonoBehaviour
     public void PlayGame()
     {
         Messenger.Broadcast(GameEvent.STOP_FIREWORKS, MessengerMode.DONT_REQUIRE_LISTENER);
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("Game" + PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME));
     }
 
     public void RetryGame()
     {
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("Game" + PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME));
     }
 
     public void GoToSettingsMenu()
     {
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("SettingsMenu");
     }
 
     public void GoToMainMenu()
     {
         Messenger.Broadcast(GameEvent.STOP_FIREWORKS, MessengerMode.DONT_REQUIRE_LISTENER);
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("MainMenu");
     }
 
     public void GoToGameOverMenu()
     {
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("GameOverMenu");
     }
 
     public void QuitGame()
     {
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         Application.Quit();
     }
 
     public void Ranking()
     {
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("Ranking");
     }
 }

@@ -20,6 +20,7 @@ public class MainMenuHelpController : MonoBehaviour
 
     public void enableDisablePanel()
     {
+        Messenger.Broadcast(GameEvent.PLAY_ESC_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         isPressed = !isPressed;
         instructionPanel.SetActive(isPressed);
     }

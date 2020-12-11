@@ -11,6 +11,9 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            
+            Messenger.Broadcast(GameEvent.PLAY_ESC_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+
             if (isPaused)
             {
                 Messenger.Broadcast(GameEvent.UNPAUSE);
@@ -49,14 +52,14 @@ public class Pause : MonoBehaviour
 
     public void Resume()
     {
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         DeactivateMenu();
         Messenger.Broadcast(GameEvent.UNPAUSE);
     }
 
     public void Quit()
     {
-        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         DeactivateMenu();
         SceneManager.LoadScene("MainMenu");
     }

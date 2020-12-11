@@ -19,7 +19,8 @@ public class AudioController : MonoBehaviour
     public AudioSource jumpAndSlideAudioSource;
     public AudioSource backgroundMusicAudioSource;
     public AudioSource fireworksAudioSource;
-    public AudioClip settingsAudioClip;
+    public AudioClip buttonAudioClip;
+    public AudioClip escAudioClip;
     public static AudioController Instance = null;
     float backgroundMusicAudioSourceVolume = 0.16f;
     float runningAudioSourceVolume = 0.30f;
@@ -57,7 +58,8 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PLAY_COLLISION_OBJECT, playCollision);
         Messenger.AddListener(GameEvent.PLAY_FIREWORKS, playFireworks);
         Messenger.AddListener(GameEvent.STOP_FIREWORKS, stopFireworks);
-        Messenger.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
+        Messenger.AddListener(GameEvent.PLAY_BUTTON_SOUND, playSettingsSound);
+        Messenger.AddListener(GameEvent.PLAY_ESC_SOUND, playEscSound);
 
         backgroundMusicAudioSource.volume = backgroundMusicAudioSourceVolume;
         runningAudioSource.volume = runningAudioSourceVolume;
@@ -108,7 +110,7 @@ public class AudioController : MonoBehaviour
 
     void playSettingsSound()
     {
-        backgroundMusicAudioSource.PlayOneShot(settingsAudioClip);
+        backgroundMusicAudioSource.PlayOneShot(buttonAudioClip);
     }
 
     void playCoinSound()
@@ -162,7 +164,8 @@ public class AudioController : MonoBehaviour
         Messenger.RemoveListener(GameEvent.PLAY_COLLISION_OBJECT, playCollision);
         Messenger.RemoveListener(GameEvent.PLAY_FIREWORKS, playFireworks);
         Messenger.RemoveListener(GameEvent.STOP_FIREWORKS, stopFireworks);
-        Messenger.RemoveListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
+        Messenger.RemoveListener(GameEvent.PLAY_BUTTON_SOUND, playSettingsSound);
+        Messenger.RemoveListener(GameEvent.PLAY_ESC_SOUND, playEscSound);
     }
 
     void playCollision()
@@ -179,4 +182,10 @@ public class AudioController : MonoBehaviour
     {
         fireworksAudioSource.Stop();
     }
+
+    void playEscSound()
+    {
+        fireworksAudioSource.PlayOneShot(escAudioClip);
+    }
+
 }

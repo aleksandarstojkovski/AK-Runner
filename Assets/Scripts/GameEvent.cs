@@ -9,7 +9,7 @@
     public const string PLAY_SLIDE_SOUND = "PLAY_SLIDE_SOUND";
     public const string STOP_RUNNING_SOUND = "STOP_RUNNING_SOUND";
     public const string PLAY_JUMP_SOUND = "PLAY_JUMP_SOUND";
-    public const string PLAY_SETTINGS_SOUND = "PLAY_SETTINGS_SOUND";
+    public const string PLAY_BUTTON_SOUND = "PLAY_BUTTON_SOUND";
     public const string PLAY_COIN_SOUND = "PLAY_COIN_SOUND";
     public const string BEGIN_GAME = "BEGIN_GAME";
     public const string PLAY_COUNTDOWN_GO = "PLAY_COUNTDOWN_GO";
@@ -22,4 +22,5 @@
     public const string PLAY_COLLISION_OBJECT = "PLAY_COLLISION_OBJECT";
     public const string PLAY_FIREWORKS = "PLAY_FIREWORKS";
     public const string STOP_FIREWORKS = "STOP_FIREWORKS";
+    public const string PLAY_ESC_SOUND = "PLAY_ESC_SOUND";
 }
