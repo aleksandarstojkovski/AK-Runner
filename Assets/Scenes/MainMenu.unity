@@ -1355,7 +1355,28 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c1640eea45a943643837c5f21a8370f2, type: 3}
   slideAudioClips:
   - {fileID: 8300000, guid: e30106a8e5631114d818a1f33bad8816, type: 3}
-  backgroundMusicAudioClip: {fileID: 8300000, guid: 13ba12a1cf747e04b9a138ef82803ec2, type: 3}
+  backgroundMusicAudioClips:
+  - {fileID: 8300000, guid: b384f39667ead8147ac52b6c4820264c, type: 3}
+  - {fileID: 8300000, guid: b1568a2c0ad19604a8cf61f16b8b30ad, type: 3}
+  - {fileID: 8300000, guid: 9b5664dc98a442f44bb4f10f4f4f5aa8, type: 3}
+  - {fileID: 8300000, guid: 4407e57d53a64714195940f1310c1367, type: 3}
+  - {fileID: 8300000, guid: 69ea9c2aa90ef47438f464d5f0ab365c, type: 3}
+  - {fileID: 8300000, guid: 1b9e22b3f9d891549973048d6109a8cc, type: 3}
+  - {fileID: 8300000, guid: 1a274283058d33b4397dea97ac067c6d, type: 3}
+  - {fileID: 8300000, guid: ee9baa13bb0eccc478efec3d57ff1285, type: 3}
+  - {fileID: 8300000, guid: 178566a4690f41b448015f86d327a06b, type: 3}
+  - {fileID: 8300000, guid: 9d54aeb7d4f1ff749b2ffe70f5fdd942, type: 3}
+  - {fileID: 8300000, guid: 0f52666cddbdbc24c90eab20473a6017, type: 3}
+  - {fileID: 8300000, guid: 0df1c1bb37caec14794e569f68ed1961, type: 3}
+  - {fileID: 8300000, guid: 3f1a37df65ad5d94592336f628de093e, type: 3}
+  - {fileID: 8300000, guid: b71e84bc86998e946a8ee79fcf2c4248, type: 3}
+  - {fileID: 8300000, guid: dfe358f418566f14b836a8f8850dcf62, type: 3}
+  - {fileID: 8300000, guid: 9e0f4ab612dbb0840bff8be121cbaca7, type: 3}
+  - {fileID: 8300000, guid: b8ce4f220b37dda4e9a024103acfa9d7, type: 3}
+  - {fileID: 8300000, guid: 7ec7d32cff454954d9b7adb0563e06a4, type: 3}
+  - {fileID: 8300000, guid: 77000717aaf860d49b98cbc3c1862c29, type: 3}
+  - {fileID: 8300000, guid: d0c83dcf9500ff4479ffe368318bcc3c, type: 3}
+  - {fileID: 8300000, guid: a1667d1f9d5160a46b04fdb673549753, type: 3}
   runningAudioSource: {fileID: 535302231}
   runningAudioClip: {fileID: 8300000, guid: 8cfd47c86b81d24488795468995eae2f, type: 3}
   coinAudioClip: {fileID: 8300000, guid: 267de6af862cdbd43a04b8fb67bcd51e, type: 3}
@@ -2410,6 +2431,8 @@ MonoBehaviour:
     m_Bits: 256
   groundChecker: {fileID: 1718398098}
   fire: {fileID: 0}
+  boostAbilityCanvas: {fileID: 0}
+  boostAbilityCounter: {fileID: 0}
   jumpHeight: 1
   leftRightForce: 2
   groundDistance: 0.2
