@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public bool boost = false;
     public bool gameStarted = false;
     public bool gamePaused = false;
+    private bool isBoosted = false;
 
     public Animator animator;
     private Rigidbody rigidBody;
@@ -28,6 +29,9 @@ public class PlayerController : MonoBehaviour
     public PlayerMetadata playerMetadata;
     public GameObject fire;
     Vector3 targetXPosition;
+
+    public GameObject boostAbilityCanvas;
+    public Image boostAbilityCounter;
 
     public float jumpHeight = 1f;
     public float leftRightForce = 2f;
@@ -240,6 +244,27 @@ public class PlayerController : MonoBehaviour
 
         processInput();
 
+        if (boost)
+        {
+            isBoosted = true;
+            if (!boostAbilityCanvas.activeSelf)
+            {
+                boostAbilityCanvas.SetActive(true);
+            }
+        }
+        if (isBoosted)
+        {
+            boostAbilityCounter.enabled = true;
+            boostAbilityCounter.fillAmount -= 1f / 5.1f * Time.deltaTime;
+        }
+        if (boostAbilityCounter.fillAmount == 0)
+        {
+            isBoosted = false;
+            boostAbilityCounter.enabled = false;
+            boostAbilityCanvas.SetActive(false);
+            boostAbilityCounter.fillAmount = 1;
+        }
+
     }
 
     void OnTriggerEnter(Collider other) {
@@ -276,6 +301,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(5);
         boostMultiplier = boostMultiplierDefault;
         fire.SetActive(false);
+        isBoosted = false;
         // wait another 1s with normal speed, so player can resume normal game
         yield return new WaitForSeconds(1);
         boost = false;
