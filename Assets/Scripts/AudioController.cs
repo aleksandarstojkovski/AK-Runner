@@ -22,8 +22,9 @@ public class AudioController : MonoBehaviour
     public AudioClip buttonAudioClip;
     public AudioClip escAudioClip;
     public static AudioController Instance = null;
-    float backgroundMusicAudioSourceVolume = 0.16f;
-    float runningAudioSourceVolume = 0.30f;
+    float backgroundMusicAudioSourceVolume = 0.6f;
+    float runningAudioSourceVolume = 1.0f;
+    float jumpAndSlideAudioSourceVolume = 1.0f;
 
     void Awake()
     {
@@ -63,6 +64,7 @@ public class AudioController : MonoBehaviour
 
         backgroundMusicAudioSource.volume = backgroundMusicAudioSourceVolume;
         runningAudioSource.volume = runningAudioSourceVolume;
+        jumpAndSlideAudioSource.volume = jumpAndSlideAudioSourceVolume;
 
         if (!backgroundMusicAudioSource.isPlaying)
         {
