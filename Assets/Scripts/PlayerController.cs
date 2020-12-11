@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour
         if (isBoosted)
         {
             boostAbilityCounter.enabled = true;
-            boostAbilityCounter.fillAmount -= 1f / 5.1f * Time.deltaTime;
+            boostAbilityCounter.fillAmount -= 1f / 6.1f * Time.deltaTime;
         }
         if (boostAbilityCounter.fillAmount == 0)
         {
