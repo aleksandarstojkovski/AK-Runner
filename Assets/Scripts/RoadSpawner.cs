@@ -73,6 +73,7 @@ public class RoadSpawner : MonoBehaviour
 		}
 
 		LastPrefab = randomIndex;
-		return randomIndex;
+		return 20;
+		//return randomIndex;
 	}
 }

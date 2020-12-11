@@ -905,8 +905,10 @@ MonoBehaviour:
   currentScore: 0
   currentCoins: 0
   recordScore: 0
-  boostMultiplier: 1
-  boostMultiplierDefault: 1
+  speedAndScoreMultiplier: 1
+  boostMultiplier: 5
+  defaultMultiplier: 1
+  boostDuration: 5
   coinValue: 1
   horizontalSpeed: 5
   leftRightMovement: 1

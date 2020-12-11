@@ -42,8 +42,10 @@ public class PlayerController : MonoBehaviour
     public float currentScore = 0;
     public float currentCoins = 0;
     public float recordScore = 0;
-    public float boostMultiplier = 1;
-    public float boostMultiplierDefault = 1;
+    public float speedAndScoreMultiplier = 1;
+    public float boostMultiplier = 5;
+    public float defaultMultiplier = 1;
+    public float boostDuration = 5;
     public float coinValue = 1f;
     public float horizontalSpeed = 5.5f;
     public float leftRightMovement = 1f;
@@ -132,6 +134,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void checkBoost()
+    {
+        if (boost == true)
+        {
+            boostAbilityCounter.fillAmount -= 1f / boostDuration * Time.deltaTime;
+        }
+    }
+
     void processInput()
     {
 
@@ -209,7 +219,7 @@ public class PlayerController : MonoBehaviour
     void moveForward()
     {
         // move character
-        transform.Translate(0, 0, speed * Time.deltaTime* boostMultiplier);
+        transform.Translate(0, 0, speed * Time.deltaTime* speedAndScoreMultiplier);
     }
 
     void graduallyMoveLeftAndRight() {
@@ -220,7 +230,7 @@ public class PlayerController : MonoBehaviour
 
     void updateScore()
     {
-        currentScore += 5 * Time.deltaTime* boostMultiplier;
+        currentScore += 5 * Time.deltaTime* speedAndScoreMultiplier;
     }
 
     // Update is called once per frame
@@ -244,26 +254,7 @@ public class PlayerController : MonoBehaviour
 
         processInput();
 
-        if (boost)
-        {
-            isBoosted = true;
-            if (!boostAbilityCanvas.activeSelf)
-            {
-                boostAbilityCanvas.SetActive(true);
-            }
-        }
-        if (isBoosted)
-        {
-            boostAbilityCounter.enabled = true;
-            boostAbilityCounter.fillAmount -= 1f / 6.1f * Time.deltaTime;
-        }
-        if (boostAbilityCounter.fillAmount == 0)
-        {
-            isBoosted = false;
-            boostAbilityCounter.enabled = false;
-            boostAbilityCanvas.SetActive(false);
-            boostAbilityCounter.fillAmount = 1;
-        }
+        checkBoost();
 
     }
 
@@ -295,15 +286,24 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Boost()
     {
+
         boost = true;
         fire.SetActive(true);
-        boostMultiplier *= 5;
-        yield return new WaitForSeconds(5);
-        boostMultiplier = boostMultiplierDefault;
+        speedAndScoreMultiplier = boostMultiplier;
+
+        boostAbilityCounter.fillAmount = 1;
+        boostAbilityCanvas.SetActive(true);
+        boostAbilityCounter.enabled = true;
+
+        yield return new WaitForSeconds(boostDuration);
+
+        speedAndScoreMultiplier = defaultMultiplier;
         fire.SetActive(false);
-        isBoosted = false;
+        boostAbilityCounter.enabled = false;
+        boostAbilityCanvas.SetActive(false);
+
         // wait another 1s with normal speed, so player can resume normal game
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         boost = false;
     }
 }
