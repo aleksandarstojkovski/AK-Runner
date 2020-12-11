@@ -59,7 +59,7 @@ public class SettingsMenuScript : MonoBehaviour
         maps = new List<string>();
         maps.Add("Desert Map");
         maps.Add("Street Map");
-        maps.Add("Test Map");
+        //maps.Add("Test Map");
 
         mapsDropdown.AddOptions(maps);
         mapsDropdown.value = maps.IndexOf(PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME) + " Map");
