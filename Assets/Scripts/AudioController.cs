@@ -7,7 +7,7 @@ public class AudioController : MonoBehaviour
 
     public AudioClip[] jumpAudioClips;
     public AudioClip[] slideAudioClips;
-    public AudioClip backgroundMusicAudioClip;
+    public AudioClip[] backgroundMusicAudioClips;
     public AudioSource runningAudioSource;
     public AudioClip runningAudioClip;
     public AudioClip coinAudioClip;
@@ -64,18 +64,17 @@ public class AudioController : MonoBehaviour
 
         backgroundMusicAudioSource.volume = backgroundMusicAudioSourceVolume;
         runningAudioSource.volume = runningAudioSourceVolume;
-        jumpAndSlideAudioSource.volume = jumpAndSlideAudioSourceVolume;
+        jumpAndSlideAudioSource.volume = 1.0f;
 
-        if (!backgroundMusicAudioSource.isPlaying)
-        {
-            backgroundMusicAudioSource.PlayOneShot(backgroundMusicAudioClip);
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!backgroundMusicAudioSource.isPlaying)
+        {
+            backgroundMusicAudioSource.PlayOneShot(backgroundMusicAudioClips[Random.Range(0, backgroundMusicAudioClips.Length)]);
+        }
     }
 
     void playAndScheduleRunning() {
