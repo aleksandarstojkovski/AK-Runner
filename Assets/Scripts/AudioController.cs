@@ -19,6 +19,7 @@ public class AudioController : MonoBehaviour
     public AudioSource jumpAndSlideAudioSource;
     public AudioSource backgroundMusicAudioSource;
     public AudioSource fireworksAudioSource;
+    public AudioClip settingsAudioClip;
     public static AudioController Instance = null;
     float backgroundMusicAudioSourceVolume = 0.16f;
     float runningAudioSourceVolume = 0.30f;
@@ -56,7 +57,7 @@ public class AudioController : MonoBehaviour
         Messenger.AddListener(GameEvent.PLAY_COLLISION_OBJECT, playCollision);
         Messenger.AddListener(GameEvent.PLAY_FIREWORKS, playFireworks);
         Messenger.AddListener(GameEvent.STOP_FIREWORKS, stopFireworks);
-        Messenger<AudioClip>.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
+        Messenger.AddListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
 
         backgroundMusicAudioSource.volume = backgroundMusicAudioSourceVolume;
         runningAudioSource.volume = runningAudioSourceVolume;
@@ -105,9 +106,9 @@ public class AudioController : MonoBehaviour
         runningAudioSource.Stop();
     }
 
-    void playSettingsSound(AudioClip audioClip)
+    void playSettingsSound()
     {
-        backgroundMusicAudioSource.PlayOneShot(audioClip);
+        backgroundMusicAudioSource.PlayOneShot(settingsAudioClip);
     }
 
     void playCoinSound()
@@ -161,7 +162,7 @@ public class AudioController : MonoBehaviour
         Messenger.RemoveListener(GameEvent.PLAY_COLLISION_OBJECT, playCollision);
         Messenger.RemoveListener(GameEvent.PLAY_FIREWORKS, playFireworks);
         Messenger.RemoveListener(GameEvent.STOP_FIREWORKS, stopFireworks);
-        Messenger<AudioClip>.RemoveListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
+        Messenger.RemoveListener(GameEvent.PLAY_SETTINGS_SOUND, playSettingsSound);
     }
 
     void playCollision()

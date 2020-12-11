@@ -1371,6 +1371,7 @@ MonoBehaviour:
   jumpAndSlideAudioSource: {fileID: 535302234}
   backgroundMusicAudioSource: {fileID: 535302236}
   fireworksAudioSource: {fileID: 535302237}
+  settingsAudioClip: {fileID: 8300000, guid: cd8f231778a234138849b780b1e91d98, type: 3}
 --- !u!4 &535302233
 Transform:
   m_ObjectHideFlags: 0

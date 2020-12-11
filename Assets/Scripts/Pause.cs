@@ -49,12 +49,14 @@ public class Pause : MonoBehaviour
 
     public void Resume()
     {
+        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         DeactivateMenu();
         Messenger.Broadcast(GameEvent.UNPAUSE);
     }
 
     public void Quit()
     {
+        Messenger.Broadcast(GameEvent.PLAY_SETTINGS_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         DeactivateMenu();
         SceneManager.LoadScene("MainMenu");
     }
