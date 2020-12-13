@@ -16,8 +16,8 @@ public class ResolutionScript : MonoBehaviour
             PlayerPrefs.SetInt(GamePrefs.Keys.SCREEN_HEIGHT, 720);
             
             bool isFullScreen = false; // should be windowed to run in arbitrary resolution
-            Debug.Log("Altezza: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT));
-            Debug.Log("Larghezza: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH));
+            // Debug.Log("Altezza: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT));
+            // Debug.Log("Larghezza: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH));
 
             Screen.SetResolution(1280, 720, isFullScreen, 60);
         }

@@ -28,7 +28,7 @@ public class SettingsMenuScript : MonoBehaviour
         currentResolution.width = PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH);
         currentResolution.height = PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT);
         currentResolution.refreshRate = 60;
-        Debug.Log("Risoluzione: " + currentResolution);
+        // Debug.Log("Risoluzione: " + currentResolution);
 
         foreach(Resolution r in resolutions){
             resOptions.Add(r.width + " x " + r.height + " pixel");
@@ -79,7 +79,7 @@ public class SettingsMenuScript : MonoBehaviour
             playerName.placeholder.GetComponent<Text>().text = PlayerPrefs.GetString(GamePrefs.Keys.PLAYER_NAME);
         } else
         {
-            PlayerPrefs.SetString(GamePrefs.Keys.PLAYER_NAME, "UNKNOWN");
+            PlayerPrefs.SetString(GamePrefs.Keys.PLAYER_NAME, "Unknown");
             playerName.placeholder.GetComponent<Text>().text = PlayerPrefs.GetString(GamePrefs.Keys.PLAYER_NAME);
         }
     }
@@ -105,9 +105,9 @@ public class SettingsMenuScript : MonoBehaviour
 
         Screen.SetResolution(PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH), PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT), fullscreenToggle.isOn);
 
-        Debug.Log("Indice: " + resolutionDropdown.value);
-        Debug.Log("Risoluzione impostata: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH) + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT));
-        Debug.Log("Fullscreen: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_IS_FULLSCREEN));
+        // Debug.Log("Indice: " + resolutionDropdown.value);
+        // Debug.Log("Risoluzione impostata: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_WIDTH) + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_HEIGHT));
+        // Debug.Log("Fullscreen: " + PlayerPrefs.GetInt(GamePrefs.Keys.SCREEN_IS_FULLSCREEN));
     }
 
     public void SetMap()

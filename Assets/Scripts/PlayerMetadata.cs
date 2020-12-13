@@ -21,7 +21,7 @@ public class PlayerMetadata
     public void update(float coins, float score) {
         this.coins = coins;
         this.score = score;
-        this.name = PlayerPrefs.GetString(GamePrefs.Keys.PLAYER_NAME, "Unknown");
+        this.name = PlayerPrefs.GetString(GamePrefs.Keys.PLAYER_NAME);
         this.map = PlayerPrefs.GetString(GamePrefs.Keys.CURRENT_MAP_NAME);
     }
 
