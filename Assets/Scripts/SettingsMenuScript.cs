@@ -58,7 +58,10 @@ public class SettingsMenuScript : MonoBehaviour
         
         maps = new List<string>();
         maps.Add("Desert Map");
-        maps.Add("Street Map");
+
+        if (PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_STREETMAP_BOUGHT,0)==1)
+            maps.Add("Street Map");
+
         //maps.Add("Test Map");
 
         mapsDropdown.AddOptions(maps);

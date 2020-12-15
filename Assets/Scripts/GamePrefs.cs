@@ -13,6 +13,7 @@
         public const string SCREEN_WIDTH = "SCREEN_WIDTH";
         public const string SCREEN_HEIGHT = "SCREEN_HEIGHT";
         public const string CURRENT_GAME_VOLUME = "CURRENT_GAME_VOLUME";
+        public const string SHOP_STREETMAP_BOUGHT = "SHOP_STREETMAP_BOUGHT";
     }
 
     public class Values

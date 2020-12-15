@@ -59,6 +59,12 @@ public class MainMenuScript : MonoBehaviour
         Application.Quit();
     }
 
+    public void Shop()
+    {
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
+        SceneManager.LoadScene("Shop");
+    }
+
     public void Ranking()
     {
         Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
