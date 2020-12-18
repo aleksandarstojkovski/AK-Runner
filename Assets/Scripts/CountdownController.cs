@@ -11,11 +11,8 @@ public class CountdownController : MonoBehaviour
 
     IEnumerator Start()
     {
-        
         countdownDisplay.text = "";
-
         yield return new WaitForSeconds(3f);
-
         StartCoroutine(CountdownToStart());
     }
 

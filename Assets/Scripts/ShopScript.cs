@@ -40,6 +40,8 @@ public class ShopScript : MonoBehaviour
         {
             isStreetMapBought = true;
             PlayerPrefs.SetInt(GamePrefs.Keys.SHOP_STREETMAP_BOUGHT, 1);
+            PlayerPrefs.SetFloat(GamePrefs.Keys.COINS_AMNT, availableCoins-streetMapPrice);
+            Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER);
         }
     }
 

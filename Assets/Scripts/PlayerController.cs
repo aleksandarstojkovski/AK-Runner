@@ -130,8 +130,19 @@ public class PlayerController : MonoBehaviour
             // wait
             Messenger.Broadcast(GameEvent.STOP_RUNNING_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
             Messenger<PlayerMetadata>.Broadcast(GameEvent.STORE_RANKING, playerMetadata, MessengerMode.DONT_REQUIRE_LISTENER);
-            SceneManager.LoadScene("GameOverMenu");
+            speed = 0;
+            animator.Play("Hit To The Legs");
+            gamePaused = true;
+            rigidBody.transform.Translate(0, -1, 0);
+            Messenger.Broadcast(GameEvent.ACTIVATE_FRONT_CAMERA, MessengerMode.DONT_REQUIRE_LISTENER);
+            StartCoroutine(LoadGameOverWithDelay());
         }
+    }
+
+    IEnumerator LoadGameOverWithDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("GameOverMenu");
     }
 
     void checkBoost()

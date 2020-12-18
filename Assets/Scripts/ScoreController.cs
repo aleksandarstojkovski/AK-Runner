@@ -52,7 +52,7 @@ public class ScoreController : MonoBehaviour
 
         Messenger<PlayerMetadata>.AddListener(GameEvent.UPDATE_METADATA, UpdateStatusBar);
         Messenger<PlayerMetadata>.AddListener(GameEvent.STORE_RANKING, StoreRanking);
-        Messenger.AddListener(GameEvent.RESET_ALL_PREFERENCES, ReloadScore);
+        Messenger.AddListener(GameEvent.RELOAD_SCORE_CONTROLLER, ReloadScore);
 
         rankingJsonString = PlayerPrefs.GetString(GamePrefs.Keys.RANKING_JSON,"[]");
 

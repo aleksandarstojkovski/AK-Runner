@@ -7,12 +7,14 @@ public class CameraController : MonoBehaviour
 
     public GameObject firstPersonCam;
     public GameObject thirdPersonCam;
+    public GameObject frontCamera;
+    public GameObject frontCameraLight;
     int cameraMode = 3;
 
     // Start is called before the first frame update
     void Start()
     {
-     
+        Messenger.AddListener(GameEvent.ACTIVATE_FRONT_CAMERA, activateFrontCamera);
     }
 
     // Update is called once per frame
@@ -35,9 +37,22 @@ public class CameraController : MonoBehaviour
             thirdPersonCam.SetActive(false);
             firstPersonCam.SetActive(true);
         }
-        else {
+        else if (cameraMode == 3)
+        {
             firstPersonCam.SetActive(false);
             thirdPersonCam.SetActive(true);
         }
+        else {
+            firstPersonCam.SetActive(false);
+            thirdPersonCam.SetActive(false);
+            frontCamera.SetActive(true);
+            frontCameraLight.SetActive(true);
+        }
     }
+
+    void activateFrontCamera()
+    {
+        cameraMode = 4;
+    }
+
 }

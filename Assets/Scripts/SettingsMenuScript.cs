@@ -128,7 +128,7 @@ public class SettingsMenuScript : MonoBehaviour
     public void ResetPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
-        Messenger.Broadcast(GameEvent.RESET_ALL_PREFERENCES);
+        Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER);
     }
 
 }
