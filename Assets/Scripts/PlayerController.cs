@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public bool boost = false;
     public bool gameStarted = false;
     public bool gamePaused = false;
-    private bool isBoosted = false;
 
     public Animator animator;
     private Rigidbody rigidBody;
@@ -133,7 +132,6 @@ public class PlayerController : MonoBehaviour
             speed = 0;
             animator.Play("Hit To The Legs");
             gamePaused = true;
-            rigidBody.transform.Translate(0, -1, 0);
             Messenger.Broadcast(GameEvent.ACTIVATE_FRONT_CAMERA, MessengerMode.DONT_REQUIRE_LISTENER);
             StartCoroutine(LoadGameOverWithDelay());
         }

@@ -8,14 +8,14 @@ using UnityEngine.UI;
 
 public class SettingsMenuScript : MonoBehaviour
 {
-    [SerializeField] Scrollbar volumeScrollbar;
-    [SerializeField] AudioMixer audioMixer;
-    [SerializeField] Dropdown resolutionDropdown;
-    [SerializeField] Dropdown mapsDropdown;
-    [SerializeField] Toggle fullscreenToggle;
-    [SerializeField] InputField playerName;
+    public Scrollbar volumeScrollbar;
+    public Dropdown resolutionDropdown;
+    public Dropdown mapsDropdown;
+    public Toggle fullscreenToggle;
+    public InputField playerName;
     private Resolution[] resolutions;
     private List<string> maps;
+
 
     private void Start()
     {

@@ -64,7 +64,7 @@ public class AudioController : MonoBehaviour
 
         backgroundMusicAudioSource.volume = backgroundMusicAudioSourceVolume;
         runningAudioSource.volume = runningAudioSourceVolume;
-        jumpAndSlideAudioSource.volume = 1.0f;
+        jumpAndSlideAudioSource.volume = jumpAndSlideAudioSourceVolume;
 
     }
 
