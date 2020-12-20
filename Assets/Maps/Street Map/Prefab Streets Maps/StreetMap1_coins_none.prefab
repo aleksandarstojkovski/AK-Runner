@@ -38,6 +38,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 61102442765113915}
     m_Modifications:
+    - target: {fileID: 2556692356042038232, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 2556692356177721344, guid: e48e799d5339ace4ba30c10a35d9e984, type: 3}
       propertyPath: m_Name
       value: Street Map 1
