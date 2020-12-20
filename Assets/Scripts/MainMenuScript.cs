@@ -6,6 +6,15 @@ using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour
 {
+
+    private int easterEggCurrentCounter = 0;
+    private int easterEggCounterAmnt = 10;
+    private float easterEggCoins = 99999;
+
+    public void Awake() {
+        easterEggCurrentCounter = 0;
+    }
+
     public void Start()
     {
         if (!PlayerPrefs.HasKey(GamePrefs.Keys.CURRENT_MAP_NAME))
@@ -76,4 +85,15 @@ public class MainMenuScript : MonoBehaviour
         Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         SceneManager.LoadScene("Ranking");
     }
+
+    public void EasterEgg()
+    {
+        easterEggCurrentCounter++;
+        if (easterEggCurrentCounter >= easterEggCounterAmnt)
+        {
+            PlayerPrefs.SetFloat(GamePrefs.Keys.COINS_AMNT, easterEggCoins);
+            Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER);
+        }
+    }
+
 }
