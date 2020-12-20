@@ -19,6 +19,12 @@ public class MainMenuScript : MonoBehaviour
         {
             AudioListener.volume = PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME);
         }
+
+        //Special Coin
+        if (!PlayerPrefs.HasKey(GamePrefs.Keys.SPECIAL_COIN_NUMBER))
+        {
+            PlayerPrefs.SetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER, 0);
+        }
     }
 
     public void PlayGame()
