@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     public float horizontalSpeed = 5.5f;
     public float leftRightMovement = 1f;
 
+    [SerializeField] Text specialCoinText;
+
     public List<PlayerMetadata> ranking = new List<PlayerMetadata>();
 
     bool AnimatorIsPlaying(Animator animator, int layerIndex, string stateName)
@@ -223,6 +225,15 @@ public class PlayerController : MonoBehaviour
             // transform.Translate(9f*Time.deltaTime, 0, 0);
             targetXPosition.x += leftRightMovement;
         }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER) > 0 && boost == false)
+            {
+                PlayerPrefs.SetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER, PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER) - 1);
+                StartCoroutine(Boost());
+            }
+        }
     }
 
     void moveForward()
@@ -240,6 +251,7 @@ public class PlayerController : MonoBehaviour
     void updateScore()
     {
         currentScore += 5 * Time.deltaTime* speedAndScoreMultiplier;
+        specialCoinText.text = "x" + PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER);
     }
 
     // Update is called once per frame
@@ -264,7 +276,6 @@ public class PlayerController : MonoBehaviour
         processInput();
 
         checkBoost();
-
     }
 
     void OnTriggerEnter(Collider other) {

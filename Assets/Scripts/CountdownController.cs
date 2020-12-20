@@ -8,6 +8,7 @@ public class CountdownController : MonoBehaviour
     public int countdownTime;
     public Text countdownDisplay;
     List<string> countdownList = new List<string>() { GameEvent.PLAY_COUNTDOWN_1, GameEvent.PLAY_COUNTDOWN_2, GameEvent.PLAY_COUNTDOWN_3 };
+    [SerializeField] GameObject specialCoinCanvas;
 
     IEnumerator Start()
     {
@@ -39,7 +40,7 @@ public class CountdownController : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         countdownDisplay.gameObject.SetActive(false);
-
+        specialCoinCanvas.SetActive(true);
     }
 
 }
