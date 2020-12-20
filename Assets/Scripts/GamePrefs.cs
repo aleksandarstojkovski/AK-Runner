@@ -14,7 +14,7 @@
         public const string SCREEN_HEIGHT = "SCREEN_HEIGHT";
         public const string CURRENT_GAME_VOLUME = "CURRENT_GAME_VOLUME";
         public const string SHOP_STREETMAP_BOUGHT = "SHOP_STREETMAP_BOUGHT";
-        public const string SPECIAL_COIN_NUMBER = "SPECIAL_COIN_NUMBER";
+        public const string SHOP_SPECIAL_COIN_AMNT = "SHOP_SPECIAL_COIN_AMNT";
     }
 
     public class Values

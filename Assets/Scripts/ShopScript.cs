@@ -23,7 +23,7 @@ public class ShopScript : MonoBehaviour
         isStreetMapBought = PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_STREETMAP_BOUGHT, 0) == 1 ? true : false;
         streetMapPriceText.text = "Price: " + streetMapPrice + " coins";
         specialCoinPriceText.text = "Price: " + specialCoinPrice + " coins";
-        specialCoinNumberText.text = "x" + PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER);
+        specialCoinNumberText.text = "x" + PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT);
     }
 
     // Update is called once per frame
@@ -39,10 +39,11 @@ public class ShopScript : MonoBehaviour
             soldImage.enabled = true;
         }
 
-        specialCoinNumberText.text = "x" + PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER);
+        specialCoinNumberText.text = "x" + PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT);
     }
 
     public void buyStreetMap() {
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         if (PlayerPrefs.GetFloat(GamePrefs.Keys.COINS_AMNT) >= streetMapPrice)
         {
             isStreetMapBought = true;
@@ -54,9 +55,10 @@ public class ShopScript : MonoBehaviour
 
     public void buySpecialCoin()
     {
+        Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         if (PlayerPrefs.GetFloat(GamePrefs.Keys.COINS_AMNT) >= specialCoinPrice)
         {
-            PlayerPrefs.SetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER, PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER) + 1);
+            PlayerPrefs.SetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT, PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT) + 1);
             PlayerPrefs.SetFloat(GamePrefs.Keys.COINS_AMNT, PlayerPrefs.GetFloat(GamePrefs.Keys.COINS_AMNT) - specialCoinPrice);
             Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER);
         }

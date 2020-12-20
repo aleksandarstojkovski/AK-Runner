@@ -228,9 +228,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            if (PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER) > 0 && boost == false)
+            if (PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT) > 0 && boost == false)
             {
-                PlayerPrefs.SetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER, PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER) - 1);
+                PlayerPrefs.SetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT, PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT) - 1);
                 StartCoroutine(Boost());
             }
         }
@@ -251,7 +251,7 @@ public class PlayerController : MonoBehaviour
     void updateScore()
     {
         currentScore += 5 * Time.deltaTime* speedAndScoreMultiplier;
-        specialCoinText.text = "x" + PlayerPrefs.GetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER);
+        specialCoinText.text = "x" + PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT);
     }
 
     // Update is called once per frame

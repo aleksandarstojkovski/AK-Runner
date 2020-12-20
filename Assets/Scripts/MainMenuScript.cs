@@ -21,9 +21,9 @@ public class MainMenuScript : MonoBehaviour
         }
 
         //Special Coin
-        if (!PlayerPrefs.HasKey(GamePrefs.Keys.SPECIAL_COIN_NUMBER))
+        if (!PlayerPrefs.HasKey(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT))
         {
-            PlayerPrefs.SetInt(GamePrefs.Keys.SPECIAL_COIN_NUMBER, 0);
+            PlayerPrefs.SetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT, 0);
         }
     }
 
