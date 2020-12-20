@@ -16,10 +16,10 @@ public class Pause : MonoBehaviour
 
             if (isPaused)
             {
-                Messenger.Broadcast(GameEvent.UNPAUSE);
+                Messenger.Broadcast(GameEvent.UNPAUSE, MessengerMode.DONT_REQUIRE_LISTENER);
             } else
             {
-                Messenger.Broadcast(GameEvent.PAUSE);
+                Messenger.Broadcast(GameEvent.PAUSE, MessengerMode.DONT_REQUIRE_LISTENER);
             }
 
             isPaused = !isPaused;
@@ -54,7 +54,7 @@ public class Pause : MonoBehaviour
     {
         Messenger.Broadcast(GameEvent.PLAY_BUTTON_SOUND, MessengerMode.DONT_REQUIRE_LISTENER);
         DeactivateMenu();
-        Messenger.Broadcast(GameEvent.UNPAUSE);
+        Messenger.Broadcast(GameEvent.UNPAUSE, MessengerMode.DONT_REQUIRE_LISTENER);
     }
 
     public void Quit()

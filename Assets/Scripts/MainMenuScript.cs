@@ -92,7 +92,7 @@ public class MainMenuScript : MonoBehaviour
         if (easterEggCurrentCounter >= easterEggCounterAmnt)
         {
             PlayerPrefs.SetFloat(GamePrefs.Keys.COINS_AMNT, easterEggCoins);
-            Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER);
+            Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER, MessengerMode.DONT_REQUIRE_LISTENER);
         }
     }
 

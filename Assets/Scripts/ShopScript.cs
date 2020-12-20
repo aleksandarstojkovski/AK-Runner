@@ -9,7 +9,7 @@ public class ShopScript : MonoBehaviour
     public bool isStreetMapBought;
     public Button buyStreetMapButton;
     private float streetMapPrice = 100;
-    private float specialCoinPrice = 30;
+    private float specialCoinPrice = 900;
     public Image soldImage;
     public Text streetMapPriceText;
 
@@ -49,7 +49,7 @@ public class ShopScript : MonoBehaviour
             isStreetMapBought = true;
             PlayerPrefs.SetInt(GamePrefs.Keys.SHOP_STREETMAP_BOUGHT, 1);
             PlayerPrefs.SetFloat(GamePrefs.Keys.COINS_AMNT, PlayerPrefs.GetFloat(GamePrefs.Keys.COINS_AMNT) - streetMapPrice);
-            Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER);
+            Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER, MessengerMode.DONT_REQUIRE_LISTENER);
         }
     }
 
@@ -60,7 +60,7 @@ public class ShopScript : MonoBehaviour
         {
             PlayerPrefs.SetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT, PlayerPrefs.GetInt(GamePrefs.Keys.SHOP_SPECIAL_COIN_AMNT) + 1);
             PlayerPrefs.SetFloat(GamePrefs.Keys.COINS_AMNT, PlayerPrefs.GetFloat(GamePrefs.Keys.COINS_AMNT) - specialCoinPrice);
-            Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER);
+            Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER, MessengerMode.DONT_REQUIRE_LISTENER);
         }
     }
 }
