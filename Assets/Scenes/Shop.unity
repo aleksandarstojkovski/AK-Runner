@@ -1075,7 +1075,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Price: 900 coins'
+  m_Text: 'Price: 600 coins'
 --- !u!222 &953155122
 CanvasRenderer:
   m_ObjectHideFlags: 0

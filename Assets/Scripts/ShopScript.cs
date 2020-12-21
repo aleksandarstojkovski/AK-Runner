@@ -9,7 +9,7 @@ public class ShopScript : MonoBehaviour
     public bool isStreetMapBought;
     public Button buyStreetMapButton;
     private float streetMapPrice = 100;
-    private float specialCoinPrice = 900;
+    private float specialCoinPrice = 600;
     public Image soldImage;
     public Text streetMapPriceText;
 
