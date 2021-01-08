@@ -128,6 +128,11 @@ public class SettingsMenuScript : MonoBehaviour
     public void ResetPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
+
+        PlayerPrefs.SetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME, 1.0f);
+        volumeScrollbar.GetComponent<Scrollbar>().value = PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME);
+        AudioListener.volume = PlayerPrefs.GetFloat(GamePrefs.Keys.CURRENT_GAME_VOLUME);
+
         Messenger.Broadcast(GameEvent.RELOAD_SCORE_CONTROLLER, MessengerMode.DONT_REQUIRE_LISTENER);
     }
 
